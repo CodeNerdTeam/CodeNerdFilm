@@ -187,10 +187,27 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin_Logged.cshtml" />
+    <Content Include="Views\Shared\_Layout_LoginAdmin.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaFilm.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaQuocGia.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaTheLoaiFilm.cshtml" />
+    <Content Include="Views\Admin\ChiTietFilm.cshtml" />
+    <Content Include="Views\Admin\Film.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\QuocGia.cshtml" />
+    <Content Include="Views\Admin\TheLoai.cshtml" />
+    <Content Include="Views\Admin\ThemFilm.cshtml" />
+    <Content Include="Views\Admin\ThemQuocGia.cshtml" />
+    <Content Include="Views\Admin\ThemTheLoaiFilm.cshtml" />
+    <Content Include="Views\Admin\XoaFilm.cshtml" />
+    <Content Include="Views\Admin\XoaQuocGia.cshtml" />
+    <Content Include="Views\Admin\XoaTheLoaiFilm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
