@@ -13,6 +13,20 @@
     @Html.ActionLink("THÊM MỚI", "ThemFilm", "Admin")
 </p>
 
+@using (Html.BeginForm("Film", "Admin", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="Search" />
+}
+
+
+@if (Model.Count() == 0)
+{
+    <script>
+        alert("Không có dữ liệu");
+    </script>
+}
+
 <table class="table" border="1">
     <tr>
         <th>
@@ -101,7 +115,7 @@
 </table>
 
 <div>
-    Trang @(Model.PageNumber>Model.PageCount?3:Model.PageNumber) /@Model.PageCount
+    Trang @(Model.PageNumber>Model.PageCount?0:Model.PageNumber) /@Model.PageCount
 </div>
 <div class="Menutrang">
     @Html.PagedListPager(Model, page => Url.Action("Film", new { page = page }))

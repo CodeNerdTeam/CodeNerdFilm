@@ -72,7 +72,7 @@ namespace CodeNerd_Film.Controllers
         //
 
         // 1. Hiện thị danh sách film
-        public ActionResult Film(int? page)
+        public ActionResult Film(int? page, string search)
         {
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
@@ -82,7 +82,7 @@ namespace CodeNerd_Film.Controllers
                 int pagesize = 10;
                 // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
                 int pagenum = (page ?? 1);
-                return View(data.Films.ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+                return View(data.Films.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
             }
         }
 
@@ -260,7 +260,7 @@ namespace CodeNerd_Film.Controllers
                 {
                     ViewData["ErrorTTL"] = "Không được để trống";
                 }
-                else if (ten != null)
+                else if (ten == null)
                 {
                     ViewData["ErrorTTL"] = "Thể loại này đã có";
                 }

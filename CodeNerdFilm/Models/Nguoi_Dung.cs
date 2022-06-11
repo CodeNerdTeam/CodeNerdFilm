@@ -10,23 +10,21 @@ namespace CodeNerdFilm.Models
     {
         public int Id { get; set; }
 
-        [StringLength(10)]
+        [StringLength(150, MinimumLength = 3)]
         public string Ho_Ten { get; set; }
 
         [Required]
-        [StringLength(256)]
+        [StringLength(256, MinimumLength = 4, ErrorMessage = "Tên ??ng nh?p ph?i ch?a ít nh?t 4 ký t?")]
         public string Ten_Dang_Nhap { get; set; }
 
-        [Required]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$")]
         public string Mat_Khau { get; set; }
 
         [Required]
         [StringLength(256)]
-        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}")]
+        [EmailAddress]
         public string Email { get; set; }
 
-        [StringLength(15)]
+        [StringLength(15, MinimumLength = 10)]
         public string Dien_Thoai { get; set; }
 
         [Column(TypeName = "date")]
