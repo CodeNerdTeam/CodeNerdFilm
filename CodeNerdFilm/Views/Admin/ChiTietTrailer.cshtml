@@ -1,12 +1,12 @@
-﻿@model CodeNerdFilm.Models.Film
+﻿@model CodeNerdFilm.Models.Trailer
 @using CodeNerdFilm.Models;
 
 @{
-    ViewBag.Title = "ChiTietFilm";
+    ViewBag.Title = "ChiTietTrailer";
     Layout = "~/Views/Shared/_LayoutAdmin_Logged.cshtml";
 }
 
-<h2 style="text-transform: uppercase"><strong>Chi tiết film</strong></h2>
+<h2 style="text-transform: uppercase"><strong>Chi tiết trailer</strong></h2>
 
 <div>
     <hr />
@@ -149,19 +149,11 @@
         </dd>
 
         <dt>
-            Link film: 
+            Link url: 
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Link_Film)
-        </dd>
-
-        <dt>
-            Link trailer: 
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Link_Trailer)
+            @Html.DisplayFor(model => model.Link_Url)
         </dd>
 
         <dt>
@@ -175,8 +167,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Chỉnh sửa", "ChinhSuaFilm", new { id = Model.Id }) |
-    @Html.ActionLink("Trở về trang trước", "Film")
+    @Html.ActionLink("Chỉnh sửa", "ChinhSuaTrailer", new { id = Model.Id }) |
+    @Html.ActionLink("Trở về trang trước", "Trailer")
 </p>
 
 <style>

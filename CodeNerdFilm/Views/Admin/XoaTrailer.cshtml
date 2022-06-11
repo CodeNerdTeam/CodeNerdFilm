@@ -1,12 +1,13 @@
-﻿@model CodeNerdFilm.Models.Film
-@using CodeNerdFilm.Models;
+﻿@model CodeNerdFilm.Models.Trailer
 
 @{
-    ViewBag.Title = "ChiTietFilm";
+    ViewBag.Title = "XoaTrailer";
     Layout = "~/Views/Shared/_LayoutAdmin_Logged.cshtml";
 }
 
-<h2 style="text-transform: uppercase"><strong>Chi tiết film</strong></h2>
+<h2 style="text-transform: uppercase"><strong>Xoá trailer</strong></h2>
+
+<h3>Bạn chắc chắn muốn xoá?</h3>
 
 <div>
     <hr />
@@ -173,11 +174,17 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về trang trước", "Trailer")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Chỉnh sửa", "ChinhSuaFilm", new { id = Model.Id }) |
-    @Html.ActionLink("Trở về trang trước", "Film")
-</p>
 
 <style>
     .rating {

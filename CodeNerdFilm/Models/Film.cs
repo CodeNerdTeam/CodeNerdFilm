@@ -65,7 +65,7 @@ namespace CodeNerdFilm.Models
         // add list qu?c gia
         public List<Quoc_Gia> DSQuocGia = new List<Quoc_Gia>();
 
-        // add list ch?ng film
+        // add list ch?nng film
         public List<Chung_Film> DSChungFilm = new List<Chung_Film>();
     }
 }

@@ -1,0 +1,115 @@
+﻿@model PagedList.PagedList<Trailer>
+@using CodeNerdFilm.Models;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Trailer";
+    Layout = "~/Views/Shared/_LayoutAdmin_Logged.cshtml";
+}
+
+<h2 style="text-transform: uppercase"><strong>Danh sách trailer</strong></h2>
+
+<p>
+    @Html.ActionLink("THÊM MỚI", "ThemTrailer", "Admin")
+</p>
+
+<table class="table" border="1">
+    <tr>
+        <th>
+            Tên
+        </th>
+        <th>
+            Tiêu đề
+        </th>
+        <th>
+            Năm sản xuất
+        </th>
+        <th>
+            Thể loại
+        </th>
+        <th>
+            Đánh giá
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Tieu_De)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Nam_San_Xuat)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.The_Loai.Ten)
+            </td>
+
+            <td>
+                @if (item.Danh_Gia == 0)
+                {
+                    <label title="No star rating">Không có đánh giá</label>
+                }
+                @if (item.Danh_Gia == 1)
+                {
+                    <img srcset="/Content/Images/Star.png" class="rating" title="one star rating" />
+                }
+                @if (item.Danh_Gia == 2)
+                {
+                    <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
+                }
+                @if (item.Danh_Gia == 3)
+                {
+                    <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                }
+                @if (item.Danh_Gia == 4)
+                {
+                    <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                }
+                @if (item.Danh_Gia == 5)
+                {
+                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                }
+            </td>
+
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "ChinhSuaTrailer", new { id = item.Id }) |
+                @Html.ActionLink("Chi tiết", "ChiTietTrailer", new { id = item.Id }) |
+                @Html.ActionLink("Xoá", "XoaTrailer", new { id = item.Id })
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+<div>
+    Trang @(Model.PageNumber>Model.PageCount?3:Model.PageNumber) /@Model.PageCount
+</div>
+<div class="Menutrang">
+    @Html.PagedListPager(Model, page => Url.Action("Trailer", new { page = page }))
+</div>
+
+<style>
+    .rating {
+        width: 25px;
+        height: 25px;
+    }
+</style>

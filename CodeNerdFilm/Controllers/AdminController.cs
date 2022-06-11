@@ -59,7 +59,8 @@ namespace CodeNerd_Film.Controllers
             return View();
         }
 
-        // Logout
+        //
+        // Đăng xuất
         public ActionResult Logout()
         {
             Session.Clear(); // xoá session
@@ -95,8 +96,13 @@ namespace CodeNerd_Film.Controllers
             else
             {
                 Film f = new Film();
+
                 // Get list quốc gia
                 f.DSQuocGia = data.Quoc_Gia.ToList();
+                // Get list thể loại
+                f.DSTheLoai = data.The_Loai.ToList();
+                // Get list chủng phim
+                f.DSChungFilm = data.Chung_Film.ToList();
                 return View(f);
             }
         }
@@ -112,6 +118,8 @@ namespace CodeNerd_Film.Controllers
                 if (!ModelState.IsValid)
                 {
                     f.DSQuocGia = data.Quoc_Gia.ToList();
+                    f.DSTheLoai = data.The_Loai.ToList();
+                    f.DSChungFilm = data.Chung_Film.ToList();
                     return View("ThemFilm", f);
                 }
                 else
@@ -174,21 +182,40 @@ namespace CodeNerd_Film.Controllers
                 return RedirectToAction("Login", "Admin");
             else
             {
-                Film film = data.Films.SingleOrDefault(n => n.Id == id);
-                return View(film);
+                Film f = data.Films.SingleOrDefault(n => n.Id == id);
+                // Get list quốc gia
+                f.DSQuocGia = data.Quoc_Gia.ToList();
+                // Get list thể loại
+                f.DSTheLoai = data.The_Loai.ToList();
+                // Get list chủng phim
+                f.DSChungFilm = data.Chung_Film.ToList();
+                return View(f);
             }
         }
         [HttpPost, ActionName("ChinhSuaFilm")]
-        public ActionResult XacNhanSuaFilm(int id)
+        public ActionResult XacNhanSuaFilm(int id, FormCollection collection)
         {
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
             else
             {
-                Film film = data.Films.SingleOrDefault(n => n.Id == id);
-                UpdateModel(film);
-                data.SaveChanges();
-                return RedirectToAction("Film");
+                Film f = data.Films.SingleOrDefault(n => n.Id == id);
+                var Hinh = collection["Hinh"];
+                if (!ModelState.IsValid)
+                {
+                    f.DSQuocGia = data.Quoc_Gia.ToList();
+                    f.DSTheLoai = data.The_Loai.ToList();
+                    f.DSChungFilm = data.Chung_Film.ToList();
+                    return View("ChinhSuaFilm", f);
+                }
+                else
+                {
+                    f.Hinh = Hinh.ToString();
+                    //Luu vao CSDL
+                    UpdateModel(f);
+                    data.SaveChanges();
+                    return RedirectToAction("Trailer");
+                }
             }
         }
 
@@ -440,7 +467,158 @@ namespace CodeNerd_Film.Controllers
             }
         }
 
-        //---Get link image---
+        // 14. Hiện thị danh sách trailer
+        public ActionResult Trailer(int? page)
+        {
+            if (Session["Taikhoanadmin"] == null)
+                return RedirectToAction("Login", "Admin");
+            else
+            {
+                // Kích thước trang = số mẫu tin cho 1 trang
+                int pagesize = 10;
+                // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
+                int pagenum = (page ?? 1);
+                return View(data.Trailers.ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+            }
+        }
+
+        //
+        // 15. Thêm mới 1 video trailer: Hiện thị view để thêm mới, sau đó Lưu 
+        [HttpGet]
+        public ActionResult ThemTrailer()
+        {
+            if (Session["Taikhoanadmin"] == null)
+                return RedirectToAction("Login", "Admin");
+            else
+            {
+                Trailer t = new Trailer();
+
+                // Get list quốc gia
+                t.DSQuocGia = data.Quoc_Gia.ToList();
+                // Get list thể loại
+                t.DSTheLoai = data.The_Loai.ToList();
+                // Get list chủng phim
+                t.DSChungFilm = data.Chung_Film.ToList();
+                return View(t);
+            }
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult ThemTrailer(Trailer t, FormCollection collection)
+        {
+            if (Session["Taikhoanadmin"] == null)
+                return RedirectToAction("Login", "Admin");
+            else
+            {
+                var Hinh = collection["Hinh"];
+                if (!ModelState.IsValid)
+                {
+                    t.DSQuocGia = data.Quoc_Gia.ToList();
+                    t.DSTheLoai = data.The_Loai.ToList();
+                    t.DSChungFilm = data.Chung_Film.ToList();
+                    return View("ThemTrailer", t);
+                }
+                else
+                {
+                    t.Hinh = Hinh.ToString();
+                    //Luu vao CSDL
+                    data.Trailers.Add(t);
+                    data.SaveChanges();
+                    return RedirectToAction("Trailer", "Admin");
+                }
+
+            }
+        }
+
+        //
+        // 3. Xem chi tiết trailer
+        public ActionResult ChiTietTrailer(int id)
+        {
+            if (Session["Taikhoanadmin"] == null)
+                return RedirectToAction("Login", "Admin");
+            else
+            {
+                var film = from f in data.Trailers where f.Id == id select f;
+                return View(film.SingleOrDefault());
+            }
+        }
+
+        //
+        // 4. Xoá trailer
+        [HttpGet]
+        public ActionResult XoaTrailer(int id)
+        {
+            if (Session["Taikhoanadmin"] == null)
+                return RedirectToAction("Login", "Admin");
+            else
+            {
+                var sach = from f in data.Trailers where f.Id == id select f;
+                return View(sach.SingleOrDefault());
+            }
+        }
+        [HttpPost, ActionName("XoaTrailer")]
+        public ActionResult XacNhanXoaTrailer(int id)
+        {
+            if (Session["Taikhoanadmin"] == null)
+                return RedirectToAction("Login", "Admin");
+            else
+            {
+                Film film = data.Films.SingleOrDefault(n => n.Id == id);
+                data.Films.Remove(film);
+                data.SaveChanges();
+                return RedirectToAction("Trailer");
+            }
+        }
+
+        //
+        // 5. Điều chỉnh thông tin trailer
+        public ActionResult ChinhSuaTrailer(int id)
+        {
+            if (Session["Taikhoanadmin"] == null)
+                return RedirectToAction("Login", "Admin");
+            else
+            {
+                Trailer t = data.Trailers.SingleOrDefault(n => n.Id == id);
+
+                // Get list quốc gia
+                t.DSQuocGia = data.Quoc_Gia.ToList();
+                // Get list thể loại
+                t.DSTheLoai = data.The_Loai.ToList();
+                // Get list chủng phim
+                t.DSChungFilm = data.Chung_Film.ToList();
+                return View(t);
+            }
+        }
+        [HttpPost, ActionName("ChinhSuaTrailer")]
+        public ActionResult XacNhanSuaTrailer(int id, FormCollection collection)
+        {
+            if (Session["Taikhoanadmin"] == null)
+                return RedirectToAction("Login", "Admin");
+            else
+            {
+                Trailer t = data.Trailers.SingleOrDefault(n => n.Id == id);
+                
+                var Hinh = collection["Hinh"];
+                if (!ModelState.IsValid)
+                {
+                    t.DSQuocGia = data.Quoc_Gia.ToList();
+                    t.DSTheLoai = data.The_Loai.ToList();
+                    t.DSChungFilm = data.Chung_Film.ToList();
+                    return View("ChinhSuaTrailer", t);
+                }
+                else
+                {
+                    t.Hinh = Hinh.ToString();
+                    //Luu vao CSDL
+                    UpdateModel(t);
+                    data.SaveChanges();
+                    return RedirectToAction("Trailer");
+                }
+            }
+        }
+
+        //
+        // Get link ảnh
         public String ProcessUpload(HttpPostedFileBase file)
         {
             if (file == null)

@@ -1,12 +1,12 @@
-﻿@model CodeNerdFilm.Models.Film
+﻿@model CodeNerdFilm.Models.Trailer
 @using CodeNerdFilm.Models;
 
 @{
-    ViewBag.Title = "ThemFilm";
+    ViewBag.Title = "ThemTrailer";
     Layout = "~/Views/Shared/_LayoutAdmin_Logged.cshtml";
 }
 
-<h2 style="text-transform: uppercase"><strong>Thêm mới film</strong></h2>
+<h2 style="text-transform: uppercase"><strong>Thêm mới trailer</strong></h2>
 
 @using (Html.BeginForm())
 {
@@ -123,18 +123,10 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Link film: </label>
+            <label class="control-label col-md-2">Link url: </label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Link_Film, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Link_Film, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Link trailer: </label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Link_Trailer, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Link_Trailer, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Link_Url, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Link_Url, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -190,7 +182,7 @@
 }
 
 <div>
-    @Html.ActionLink("Trở về trang trước", "Film")
+    @Html.ActionLink("Trở về trang trước", "Trailer")
 </div>
 
 <style>

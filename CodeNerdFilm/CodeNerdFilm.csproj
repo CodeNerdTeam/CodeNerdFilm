@@ -204,6 +204,11 @@
     <Content Include="Views\Admin\XoaFilm.cshtml" />
     <Content Include="Views\Admin\XoaQuocGia.cshtml" />
     <Content Include="Views\Admin\XoaTheLoaiFilm.cshtml" />
+    <Content Include="Views\Admin\ThemTrailer.cshtml" />
+    <Content Include="Views\Admin\ChiTietTrailer.cshtml" />
+    <Content Include="Views\Admin\XoaTrailer.cshtml" />
+    <Content Include="Views\Admin\Trailer.cshtml" />
+    <Content Include="Views\Admin\ChinhSuaTrailer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
