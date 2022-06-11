@@ -18,10 +18,12 @@ namespace CodeNerdFilm.Models
         public string Ten_Dang_Nhap { get; set; }
 
         [Required]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$")]
         public string Mat_Khau { get; set; }
 
         [Required]
         [StringLength(256)]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}")]
         public string Email { get; set; }
 
         [StringLength(15)]

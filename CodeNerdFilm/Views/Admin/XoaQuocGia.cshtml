@@ -1,0 +1,42 @@
+﻿@model CodeNerd_Film.Models.Quoc_Gia
+
+@{
+    ViewBag.Title = "XoaQuocGia";
+    Layout = "~/Views/Shared/_LayoutAdmin_Logged.cshtml";
+}
+
+<h2 style="text-transform: uppercase"><strong>Xoá quốc gia</strong></h2>
+
+<h3>Bạn chắc chắn muốn xoá?</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal"
+        <dt>
+            Mã quốc gia: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            Tên quốc gia: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về trang trước", "QuocGia")
+        </div>
+    }
+</div>

@@ -1,0 +1,50 @@
+﻿@model PagedList.IPagedList<CodeNerd_Film.Models.Quoc_Gia>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "QuocGia";
+    Layout = "~/Views/Shared/_LayoutAdmin_Logged.cshtml";
+}
+
+<h2 style="text-transform: uppercase"><strong>Quốc gia</strong></h2>
+
+<p>
+    @Html.ActionLink("THÊM MỚI", "ThemQuocGia", "Admin")
+</p>
+<table class="table" border="1">
+    <tr>
+        <th>
+            Mã quốc gia
+        </th>
+        <th>
+            Tên quốc gia
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+
+            <td>
+                @Html.ActionLink("Sửa", "ChinhSuaQuocGia", new { id = item.Id }) |
+                @Html.ActionLink("Xoá", "XoaQuocGia", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    Trang @(Model.PageNumber>Model.PageCount?3:Model.PageNumber) /@Model.PageCount
+</div>
+<div class="Menutrang">
+    @Html.PagedListPager(Model, page => Url.Action("TheLoai", new { page = page }))
+</div>

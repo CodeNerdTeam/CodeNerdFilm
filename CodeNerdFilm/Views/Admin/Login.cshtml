@@ -1,0 +1,141 @@
+﻿@model  CodeNerd_Film.Models.Nguoi_Dung
+@{
+    Layout = "~/Views/Shared/_Layout_LoginAdmin.cshtml";
+}
+
+<h2 style="text-transform: uppercase"><strong>Đăng nhập hệ thống</strong></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên đăng nhập:</label>
+            <div class="col-md-10">
+                <input type="text" name="Ten_Dang_Nhap" placeholder="Nhập tên đăng nhập..." class="form-username form-control" id="form-username">
+                <h5 class="error-message"></h5>@ViewData["ErrorTDN"]
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Mật khẩu:</label>
+            <div class="col-md-10">
+                <input type="password" name="Mat_Khau" placeholder="Nhập mật khẩu..." class="form-username form-control" id="form-username">
+                <h5 class="error-message"></h5>@ViewData["ErrorMK"]
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <h5 style="color:red; font-style:italic"> @ViewBag.Thongbao</h5>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Đăng nhập" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .error-message {
+        margin-top: 3px;
+    }
+    *::selection {
+        color: yellow;
+    }
+
+    body {
+    }
+
+    .btn {
+        color: yellow;
+    }
+
+    .container body-content {
+        display: block;
+        justify-content: center;
+    }
+
+    .container.body-content {
+        border-style: inset;
+        border-color: black;
+        border-radius: 5px;
+        width: 600px;
+        background: #de9cbd;
+        display: grid;
+        align-self: center;
+        justify-content: space-around;
+        margin-top: 100px;
+        padding-top: 30px;
+    }
+
+
+    .form-horizontal {
+        /* border-style: inset; */
+        /* border-color: black; */
+        /* border-radius: 5px; */
+        min-width: 500px;
+        display: contents;
+    }
+
+    .form-group {
+        display: flex;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        margin: auto;
+    }
+
+    .btn-default {
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+        margin: inherit;
+        margin-top: 20px;
+        background-color: #ea6ebe;
+        margin: auto;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+        .btn-default:hover {
+            background-color: #ea6ebe59;
+            cursor: pointer;
+            color: yellow;
+        }
+
+        .btn-default:active {
+            background-color: #ea6ebe;
+            color: yellow;
+        }
+
+    .control-label col-md-2 {
+        width: 200px;
+    }
+
+    .form-horizontal .control-label {
+        width: 200px;
+    }
+
+    label {
+        cursor: auto;
+    }
+
+    body {
+        background-color: #f744d842;
+        position: relative;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+    }
+</style>

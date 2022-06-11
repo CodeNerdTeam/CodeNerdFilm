@@ -58,5 +58,14 @@ namespace CodeNerdFilm.Models
         public virtual Quoc_Gia Quoc_Gia { get; set; }
 
         public virtual The_Loai The_Loai { get; set; }
+
+        // add list th? lo?i
+        public List<The_Loai> DSTheLoai = new List<The_Loai>();
+
+        // add list qu?c gia
+        public List<Quoc_Gia> DSQuocGia = new List<Quoc_Gia>();
+
+        // add list ch?ng film
+        public List<Chung_Film> DSChungFilm = new List<Chung_Film>();
     }
 }

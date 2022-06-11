@@ -1,0 +1,201 @@
+﻿@model CodeNerd_Film.Models.Film
+@using CodeNerd_Film.Models;
+
+@{
+    ViewBag.Title = "ThemFilm";
+    Layout = "~/Views/Shared/_LayoutAdmin_Logged.cshtml";
+}
+
+<h2 style="text-transform: uppercase"><strong>Thêm mới film</strong></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tiêu đề: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tieu_De, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tieu_De, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Trạng thái: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Trang_Thai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Trang_Thai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Quốc gia: </label>
+            <div class="col-md-10">
+                @Html.DropDownList("Quoc_Gia_Id", new SelectList(Model.DSQuocGia, "Id", "Ten"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Quoc_Gia_Id, "", new { @class = "text-danger" })                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Năm sản xuất: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nam_San_Xuat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nam_San_Xuat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thời lượng: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Thoi_Luong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Thoi_Luong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thể loại: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.The_Loai_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.The_Loai_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Hình ảnh: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
+                <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+                <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nội dung: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Noi_Dung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Noi_Dung, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Đạo diễn: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Dao_Dien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Dao_Dien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Diễn viên: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Dien_Vien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Dien_Vien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Công ty sản xuất: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cong_Ty_San_Xuat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cong_Ty_San_Xuat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Đánh giá: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Danh_Gia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Danh_Gia, "", new { @class = "text-danger" })
+                <h5 class="error-message"></h5>@ViewData["ErrorFilm2"]
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Link film: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Link_Film, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Link_Film, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Link trailer: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Link_Trailer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Link_Trailer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Chủng film: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Chung_Film_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Chung_Film_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    @section upload
+{
+        <script>
+            $(function () {
+                $('#btnUpload').click(function () {
+                    $('#fileUpload').trigger('click');
+                });
+            });
+            $('#fileUpload').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '/Admin/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+
+                                $('#pictureUpload').attr('src', urlImage);
+                                $('#Hinh').val(urlImage);
+                            },
+                            error: function (err) {
+                                alert('Error ', err.statusText);
+                            }
+                        });
+                }
+            });
+        </script>
+    }
+}
+
+<div>
+    @Html.ActionLink("Trở về trang trước", "Film")
+</div>
+
+<style>
+    .error-message {
+        margin-top: 3px;
+    }
+</style>

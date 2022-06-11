@@ -1,0 +1,194 @@
+﻿@model CodeNerd_Film.Models.Film
+
+@{
+    ViewBag.Title = "XoaFilm";
+    Layout = "~/Views/Shared/_LayoutAdmin_Logged.cshtml";
+}
+
+<h2 style="text-transform: uppercase"><strong>Xoá film</strong></h2>
+
+<h3>Bạn chắc chắn muốn xoá?</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+
+        <dt>
+            Tiêu đề:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tieu_De)
+        </dd>
+
+        <dt>
+            Trạng thái:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trang_Thai)
+        </dd>
+
+        <dt>
+            Quốc gia:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quoc_Gia1.Ten)
+        </dd>
+
+        <dt>
+            Năm sản xuất:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nam_San_Xuat)
+        </dd>
+
+        <dt>
+            Thời lượng:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thoi_Luong)
+        </dd>
+
+        <dt>
+            Thể loại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.The_Loai1.Ten)
+        </dd>
+
+        <dt>
+            Hình ảnh: 
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Hinh)" width="150" height="200" alt="Hình thumnail"/>
+        </dd>
+
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Noi_Dung)
+        </dd>
+
+        <dt>
+            Đạo diễn:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dao_Dien)
+        </dd>
+
+        <dt>
+            Diễn viên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dien_Vien)
+        </dd>
+
+        <dt>
+            Công ty sản xuất:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cong_Ty_San_Xuat)
+        </dd>
+
+        <dt>
+            Đánh giá: 
+        </dt>
+            
+        <dd>
+            @if (@Model.Danh_Gia == 0)
+            {
+                <label title="No star rating">Không có đánh giá</label>
+            }
+            @if (@Model.Danh_Gia == 1)
+            {
+                <img srcset="/Content/Images/Star.png" class="rating" title="one star rating" />
+            }
+            @if (@Model.Danh_Gia == 2)
+            {
+                <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
+            }
+            @if (@Model.Danh_Gia == 3)
+            {
+                <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+            }
+            @if (@Model.Danh_Gia == 4)
+            {
+                <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+            }
+            @if (@Model.Danh_Gia == 5)
+            {
+                <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+            }
+        </dd>
+
+        <dt>
+            Link film: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link_Film)
+        </dd>
+
+        <dt>
+            Link trailer: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link_Trailer)
+        </dd>
+
+        <dt>
+            Chủng film: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chung_Film1.Ten)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về trang trước", "Film")
+        </div>
+    }
+</div>
+
+<style>
+    .rating {
+        width: 25px;
+        height: 25px;
+    }
+</style>

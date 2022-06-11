@@ -1,0 +1,43 @@
+﻿@model CodeNerd_Film.Models.The_Loai
+
+@{
+    ViewBag.Title = "XoaTheLoaiFilm";
+    Layout = "~/Views/Shared/_LayoutAdmin_Logged.cshtml";
+}
+
+<h2 style="text-transform: uppercase"><strong>Xoá thể loại film</strong></h2>
+
+<h3>Bạn có chắc chắn muốn xoá?</h3>
+<h3>Hãy chắc chắn rằng không có bộ phim nào chứa thể loại này!</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã thể loại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            Tên thể loại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về trang trước", "TheLoai")
+        </div>
+    }
+</div>
