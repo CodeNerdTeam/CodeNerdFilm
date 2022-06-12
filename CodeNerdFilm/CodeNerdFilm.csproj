@@ -214,7 +214,7 @@
     <Content Include="Views\Shared\_LayoutUser_Logged.cshtml" />
     <Content Include="Views\NguoiDung\Register.cshtml" />
     <Content Include="Views\NguoiDung\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout _LoginUser.cshtml" />
+    <Content Include="Views\Shared\_Layout_LoginUser.cshtml" />
     <Content Include="Views\NguoiDung\Login.cshtml" />
     <Content Include="Views\NguoiDung\ChiTietFilm.cshtml" />
   </ItemGroup>

@@ -11,7 +11,7 @@
     @foreach (var item in Model)
     {
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a @*href="@Url.Action("ChiTietFilm","NguoiDung")*@ class="">
+            <a href="@Url.Action("ChiTietFilm", "NguoiDung", new { id = item.Id } )" class="">
                 <div class="box-content">
                     <div class="box-body">
                         <img src="@item.Hinh" alt="hinh thumbnail" width="300" height="350" />
