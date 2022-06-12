@@ -213,8 +213,11 @@
     <Content Include="Views\Admin\XoaTrailer.cshtml" />
     <Content Include="Views\Admin\Trailer.cshtml" />
     <Content Include="Views\Admin\ChinhSuaTrailer.cshtml" />
-    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser_Logged.cshtml" />
     <Content Include="Views\NguoiDung\Register.cshtml" />
+    <Content Include="Views\NguoiDung\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout _LoginUser.cshtml" />
+    <Content Include="Views\NguoiDung\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CodeNerdFilm.Models;
 using Scrypt;
+using PagedList;
 
 namespace CodeNerdFilm.Controllers
 {
@@ -15,11 +16,21 @@ namespace CodeNerdFilm.Controllers
         // Tạo đối tượng data chứa dữ liệu từ model đã tạo. 
         CodeNerdFilmDBContext data = new CodeNerdFilmDBContext();
 
-        public ActionResult Index()
+        //
+        // Trang Index sau khi user đã đăng nhập
+        public ActionResult Index(int? page, string search)
         {
-            return View();
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                // Kích thước trang = số mẫu tin cho 1 trang
+                int pagesize = 10;
+                // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
+                int pagenum = (page ?? 1);
+                return View(data.Films.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+            }
         }
-
 
         //GET: Đăng ký
         [HttpGet]
@@ -57,7 +68,7 @@ namespace CodeNerdFilm.Controllers
                 _user.Quyen = 2;
                 data.Nguoi_Dung.Add(_user);
                 data.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "NguoiDung");
             }
             else
             {
@@ -65,5 +76,46 @@ namespace CodeNerdFilm.Controllers
                 return this.Register();
             }
         }
+
+        //
+        // Đăng nhập tài khoản người dùng
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(FormCollection f)
+        {
+            var Ten_Dang_Nhap = f["Ten_Dang_Nhap"];
+            var Mat_Khau = f["Mat_Khau"];
+
+            if (String.IsNullOrEmpty(Ten_Dang_Nhap))
+                ViewData["ErrorTDN"] = "Vui lòng nhập tên đăng nhập";
+            else if (String.IsNullOrEmpty(Mat_Khau))
+                ViewData["ErrorMK"] = "Vui lòng nhập mật khẩu";
+            else
+            {
+                var user = data.Nguoi_Dung.SingleOrDefault(n => n.Ten_Dang_Nhap == Ten_Dang_Nhap && n.Mat_Khau == Mat_Khau && n.Quyen == 2);
+                if (user != null)
+                {
+                    Session["Taikhoannguoidung"] = user;
+                    return RedirectToAction("Index", "NguoiDung");
+                }
+                else
+                    ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không hợp lệ";
+            }
+            return View();
+        }
+
+        //
+        // Đăng xuất
+        public ActionResult Logout()
+        {
+            Session.Clear(); // xoá session
+            return RedirectToAction("Login");
+        }
+
+
     }
 }

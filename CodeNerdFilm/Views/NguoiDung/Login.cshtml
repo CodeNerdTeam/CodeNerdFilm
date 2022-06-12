@@ -1,0 +1,44 @@
+﻿@model CodeNerdFilm.Models.Nguoi_Dung
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout _LoginUser.cshtml";
+}
+
+<h2 style="text-transform: uppercase"><strong>Đăng nhập</strong></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên đăng nhập:</label>
+            <div class="col-md-10">
+                @Html.TextBox("Ten_Dang_Nhap")
+                @ViewData["ErrorTDN"]
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Mật khẩu:</label>
+            <div class="col-md-10">
+                @Html.Password("Mat_Khau")
+                @ViewData["ErrorMK"]
+            </div>
+        </div>
+
+        <div>
+            <p>@ViewBag.ThongBao</p>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Đăng nhập" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

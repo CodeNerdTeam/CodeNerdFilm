@@ -1,0 +1,81 @@
+﻿@model PagedList.IPagedList<CodeNerdFilm.Models.Film>
+@using CodeNerdFilm.Models;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser_Logged.cshtml";
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <a class="">
+                <div class="box-content">
+                    <div class="box-body">
+                        <img src="@item.Hinh" alt="hinh thumbnail" width="300" height="350" />
+                    </div>
+                    <div class="box-footer clearfix">
+                        <ul class="list-item">
+                            <li>
+                                <p>@item.Tieu_De</p>
+                            </li>
+                            <li>
+                                <p>@item.Ten</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+<div>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+</div>
+
+<style>
+    .row a{
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .box-body img{
+        width: 100%;
+        height: 100%;
+    }
+    .MenuTrang li {
+        display: inline;
+    }
+    .list-item {
+        list-style-type: none;
+    }
+        .list-item li {
+            text-transform: uppercase;
+        }
+            .list-item li:hover {
+                color: #dacb46;
+            }
+            .list-item li:first-child {
+                color: #44e2ff;
+                font-size: 12px;
+                font-weight: 700;
+            }     
+</style>
+
+<style type="text/css">
+    #mau-nut-a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+        #mau-nut-a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+</style>
