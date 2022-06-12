@@ -72,12 +72,18 @@ namespace CodeNerd_Film.Controllers
         //
 
         // 1. Hiện thị danh sách film
-        public ActionResult Film(int? page)
+        public ActionResult Film(int? page, string searchString)
         {
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
             else
             {
+                /*var film = data.Films.Include(b => b.Author).Include(b => b.Category);
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    searchString = searchString.ToLower();
+                    books = books.Where(b => b.Title.ToLower().Contains(searchString));
+                }*/
                 // Kích thước trang = số mẫu tin cho 1 trang
                 int pagesize = 10;
                 // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
