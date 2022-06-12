@@ -72,7 +72,7 @@ namespace CodeNerd_Film.Controllers
         //
 
         // 1. Hiện thị danh sách film
-        public ActionResult Film(int? page)
+        public ActionResult Film(int? page, string search)
         {
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
