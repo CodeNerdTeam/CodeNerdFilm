@@ -218,6 +218,7 @@
     <Content Include="Views\NguoiDung\Index.cshtml" />
     <Content Include="Views\Shared\_Layout _LoginUser.cshtml" />
     <Content Include="Views\NguoiDung\Login.cshtml" />
+    <Content Include="Views\NguoiDung\ChiTietFilm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

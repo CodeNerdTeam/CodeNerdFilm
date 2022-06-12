@@ -116,6 +116,17 @@ namespace CodeNerdFilm.Controllers
             return RedirectToAction("Login");
         }
 
-
+        //
+        // Chi tiết film
+        public ActionResult ChiTietFilm(int id)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                var film = from f in data.Films where f.Id == id select f;
+                return View(film.SingleOrDefault());
+            }
+        }
     }
 }

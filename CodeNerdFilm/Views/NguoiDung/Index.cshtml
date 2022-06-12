@@ -10,8 +10,8 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <a class="">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a @*href="@Url.Action("ChiTietFilm","NguoiDung")*@" class="">
                 <div class="box-content">
                     <div class="box-body">
                         <img src="@item.Hinh" alt="hinh thumbnail" width="300" height="350" />
@@ -19,10 +19,10 @@
                     <div class="box-footer clearfix">
                         <ul class="list-item">
                             <li>
-                                <p>@item.Tieu_De</p>
+                                <span>@item.Tieu_De</span>
                             </li>
                             <li>
-                                <p>@item.Ten</p>
+                                <span>@item.Ten</span>
                             </li>
                         </ul>
                     </div>
@@ -32,7 +32,7 @@
     }
 </div>
 <div>
-    <div>
+    <div style="margin-top: 16px">
         Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
     </div>
     <div class="MenuTrang">
@@ -45,37 +45,34 @@
         text-decoration: none;
         cursor: pointer;
     }
+    .box-content {
+        border: 2px solid #000;
+        background-color: #000;
+    }
     .box-body img{
         width: 100%;
-        height: 100%;
-    }
-    .MenuTrang li {
-        display: inline;
+        height: 200px;
     }
     .list-item {
         list-style-type: none;
+        padding-left: 20px;
+        margin-bottom: 0;
     }
         .list-item li {
-            text-transform: uppercase;
+            font-size: 12px;
+            line-height: normal;
         }
+            .list-item li:first-child {
+                text-transform: uppercase;
+                color: #44e2ff;
+                font-weight: 700;
+                margin-top: 8px;
+            }
+            .list-item li:last-child {
+                color: #ccc;
+                margin: 8px 0 8px 0;
+            }
             .list-item li:hover {
                 color: #dacb46;
             }
-            .list-item li:first-child {
-                color: #44e2ff;
-                font-size: 12px;
-                font-weight: 700;
-            }     
-</style>
-
-<style type="text/css">
-    #mau-nut-a {
-        clear: both;
-        background-color: orange;
-        color: snow;
-    }
-        #mau-nut-a:hover {
-            background-color: darkcyan;
-            color: snow;
-        }
 </style>
