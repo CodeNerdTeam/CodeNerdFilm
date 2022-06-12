@@ -609,7 +609,7 @@ namespace CodeNerd_Film.Controllers
                 else
                 {
                     t.Hinh = Hinh.ToString();
-                    //Luu vao CSDL
+                    //Lưu vào CSDL
                     UpdateModel(t);
                     data.SaveChanges();
                     return RedirectToAction("Trailer");
