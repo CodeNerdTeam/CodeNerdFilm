@@ -22,18 +22,18 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>                
                 </ul>
-                <a href="@Url.Action("Login","NguoiDung")" class="btn btn-default">Đăng ký</a>
+                <a href="@Url.Action("Register", "NguoiDung")" class="button">Đăng ký</a>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        @*<hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Code Nerd Team</p>
-        </footer>
+        </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -63,17 +63,16 @@
         }
     }
 
-    a.btn.btn-default {
-        float: right;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        background-color: #222222;
+    .button {
+        padding: 15px;
+        text-decoration: none;
         color: #92948a;
-        border: none;
+        float: right;
+        cursor: pointer;
     }
 
-        a.btn.btn-default:hover {
-            color: white;
-            background-color: transparent;
+        .button:hover {
+            text-decoration: none;
+            color: #fff;
         }
 </style>

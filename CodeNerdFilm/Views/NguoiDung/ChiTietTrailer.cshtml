@@ -1,8 +1,8 @@
-﻿@model CodeNerdFilm.Models.Film
+﻿@model CodeNerdFilm.Models.Trailer
 @using CodeNerdFilm.Models;
 
 @{
-    ViewBag.Title = "ChiTietFilm";
+    ViewBag.Title = "ChiTietTrailer";
     Layout = "~/Views/Shared/_LayoutUser_Logged.cshtml";
 }
 
@@ -30,12 +30,7 @@
                         <img src="@Html.DisplayFor(model => model.Hinh)" alt="Hình thumbnail" />
                         <ul class="btn-block">
                             <li class="item">
-                                <a href="@Url.Action("XemFilm", "NguoiDung", new { id = Model.Id } )" class="btn btn-success btn-film-trailer" @Html.DisplayFor(model => model.Tieu_De)>Trailer</a>
-                            </li>
-                            <li class="item">
-                                <a itemprop="target" id="btn-film-watch" class="btn btn-green btn" @Html.DisplayFor(model => model.Tieu_De) href="#">
-                                    <i class="fa fa-film" aria-hidden="true"></i> Xem phim
-                                </a>
+                                <a class="btn btn-success btn-film-trailer" @Html.DisplayFor(model => model.Tieu_De)>Trailer</a>
                             </li>
                         </ul>
                     </div>
@@ -256,6 +251,7 @@
     li.item {
         list-style: none;
     }
+
     .item a:hover {
         opacity: 0.9;
         color: #fff;
@@ -456,6 +452,7 @@
         max-width: 100%;
         overflow: hidden;
     }
+
         ol.breadcrumb > li {
             white-space: nowrap;
         }
@@ -469,6 +466,7 @@
         border-radius: 3px;
         color: #cccccc;
     }
+
         .breadcrumb > li {
             display: inline-block;
             text-transform: uppercase;

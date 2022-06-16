@@ -219,6 +219,8 @@
     <Content Include="Views\Home\ChiTietFilm.cshtml" />
     <Content Include="Views\NguoiDung\FilmLe.cshtml" />
     <Content Include="Views\NguoiDung\Trailer.cshtml" />
+    <Content Include="Views\NguoiDung\ChiTietTrailer.cshtml" />
+    <Content Include="Views\NguoiDung\XemFilm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

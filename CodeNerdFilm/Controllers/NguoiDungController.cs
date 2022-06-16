@@ -54,11 +54,11 @@ namespace CodeNerdFilm.Controllers
                 return RedirectToAction("Login", "NguoiDung");
             else
             {
-                if (page == null) page = 1;
-                var film = (from s in data.Films select s).OrderBy(x => x.Id == x.Id && x.Chung_Film_Id == 1);
-                int pageSize = 10;
-                int pageNum = page ?? 1;
-                return View(film.ToPagedList(pageNum, pageSize));
+                // Kích thước trang = số mẫu tin cho 1 trang
+                int pagesize = 10;
+                // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
+                int pagenum = (page ?? 1);
+                return View(data.Films.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Chung_Film_Id == 1).ToPagedList(pagenum, pagesize));
             }
         }
 
@@ -144,6 +144,51 @@ namespace CodeNerdFilm.Controllers
         //
         // Chi tiết film
         public ActionResult ChiTietFilm(int id)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                var film = from f in data.Films where f.Id == id select f;
+                return View(film.SingleOrDefault());
+            }
+        }
+
+        //
+        // Chi tiết trailer
+        public ActionResult ChiTietTrailer(int id)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                var trailers = from f in data.Trailers where f.Id == id select f;
+                return View(trailers.SingleOrDefault());
+            }
+        }
+
+        //
+        // Quốc gia
+        //
+
+        // 1. Trung Quốc
+        public ActionResult TrungQuoc(int? page, string search)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                if (page == null) page = 1;
+                var film = (from s in data.Films select s).OrderBy(x => x.Id == x.Id && x.Quoc_Gia_Id == 6);
+                int pageSize = 10;
+                int pageNum = page ?? 1;
+                return View(film.ToPagedList(pageNum, pageSize));
+            }
+        }
+
+        //
+        // Trang xem film
+        public ActionResult XemFilm(int id)
         {
             if (Session["Taikhoannguoidung"] == null)
                 return RedirectToAction("Login", "NguoiDung");
