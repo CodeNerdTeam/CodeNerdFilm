@@ -1,4 +1,4 @@
-﻿@model  CodeNerdFilm.Models.Nguoi_Dung
+@model  CodeNerdFilm.Models.Nguoi_Dung
 @{
     Layout = "~/Views/Shared/_Layout_LoginAdmin.cshtml";
 }
@@ -44,9 +44,14 @@
 <div class="login">
         <h1>Login</h1>
         <form method="post">
-            <input type="text" name="u" placeholder="Username" required="required" />
-            <input type="password" name="p" placeholder="Password" required="required" />
+            <input type="text" name="Ten_Dang_Nhap" placeholder="Nhập tên đăng nhập..." required="required" />
+	    <h5 class="error-message"></h5>@ViewData["ErrorTDN"]
+		
+            <input type="password" name="Mat_Khau" placeholder="Nhập mật khẩu..." required="required" />
+	    <h5 class="error-message"></h5>@ViewData["ErrorMK"]
+		
             <button type="submit" class="btn btn-primary btn-block btn-large">Log in.</button>
+		
             <hr style="margin-top: 200px;">
             <p style="text-align: center; color: white; margin-top: 0%;"><small>Copywriting by CodeNerd</small></p>
         </form>
