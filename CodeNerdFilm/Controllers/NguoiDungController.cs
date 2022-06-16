@@ -32,6 +32,36 @@ namespace CodeNerdFilm.Controllers
             }
         }
 
+        // Trang trailer
+        public ActionResult Trailer(int? page, string search)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                // Kích thước trang = số mẫu tin cho 1 trang
+                int pagesize = 10;
+                // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
+                int pagenum = (page ?? 1);
+                return View(data.Trailers.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+            }
+        }
+
+        // Trang film lẻ
+        public ActionResult FilmLe(int? page, string search)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                if (page == null) page = 1;
+                var film = (from s in data.Films select s).OrderBy(x => x.Id == x.Id && x.Chung_Film_Id == 1);
+                int pageSize = 10;
+                int pageNum = page ?? 1;
+                return View(film.ToPagedList(pageNum, pageSize));
+            }
+        }
+
         //GET: Đăng ký
         [HttpGet]
         public ActionResult Register()
@@ -44,24 +74,19 @@ namespace CodeNerdFilm.Controllers
         {
             ScryptEncoder encoder = new ScryptEncoder();
 
-            var hoten = collection["hoten"];
-            var tendangnhap = collection["tendangnhap"];
-            var matkhau = collection["matkhau"];
-            var matkhaunhaplai = collection["matkhaunhaplai"];
-            var email = collection["email"];
-            var dienthoai = collection["dienthoai"];
-            var ngaysinh = String.Format("{0:MM/dd/yyyy}", collection["ngaysinh"]);
+            var hoten = collection["Ho_Ten"];
+            var tendangnhap = collection["Ten_Dang_Nhap"];
+            var matkhau = collection["Mat_Khau"];
+            var email = collection["Email"];
+            var dienthoai = collection["Dien_Thoai"];
+            var ngaysinh = String.Format("{0:dd/MM/yyyy}", collection["Ngay_Sinh"]);
 
             var check = data.Nguoi_Dung.FirstOrDefault(s => s.Ten_Dang_Nhap == _user.Ten_Dang_Nhap);
             if (check == null)
             {
-                if (!matkhau.Equals(matkhaunhaplai))
-                {
-                    ViewData["MatKhauGiongNhau"] = "Mật khẩu và nhập lại mật khẩu phải giống nhau";
-                }
                 _user.Ho_Ten = hoten;
                 _user.Ten_Dang_Nhap = tendangnhap;
-                _user.Mat_Khau = encoder.Encode(matkhau);
+                _user.Mat_Khau = matkhau;
                 _user.Email = email;
                 _user.Dien_Thoai = dienthoai;
                 _user.Ngay_Sinh = DateTime.Parse(ngaysinh);

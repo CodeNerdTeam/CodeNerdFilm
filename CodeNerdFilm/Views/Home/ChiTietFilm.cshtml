@@ -1,0 +1,144 @@
+﻿@model CodeNerdFilm.Models.Film
+
+@{
+    ViewBag.Title = "ChiTietFilm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Trang_Thai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trang_Thai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tieu_De)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tieu_De)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quoc_Gia_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quoc_Gia_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nam_San_Xuat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nam_San_Xuat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Thoi_Luong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thoi_Luong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.The_Loai_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.The_Loai_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Noi_Dung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Noi_Dung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dao_Dien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dao_Dien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dien_Vien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dien_Vien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cong_Ty_San_Xuat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cong_Ty_San_Xuat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Danh_Gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Danh_Gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link_Film)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link_Film)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link_Trailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link_Trailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chung_Film_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chung_Film_Id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Quay về trang trước", "Index")
+</p>

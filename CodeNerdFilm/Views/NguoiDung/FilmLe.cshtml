@@ -1,0 +1,124 @@
+﻿@model IEnumerable<CodeNerdFilm.Models.Film>
+
+@{
+    ViewBag.Title = "FilmLe";
+    Layout = "~/Views/Shared/_LayoutUser_Logged.cshtml";
+}
+
+<h2>FilmLe</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Trang_Thai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tieu_De)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quoc_Gia_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nam_San_Xuat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Thoi_Luong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.The_Loai_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Noi_Dung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dao_Dien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dien_Vien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cong_Ty_San_Xuat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Danh_Gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Link_Film)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Link_Trailer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chung_Film_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trang_Thai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tieu_De)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quoc_Gia_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nam_San_Xuat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Thoi_Luong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.The_Loai_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Noi_Dung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dao_Dien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dien_Vien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cong_Ty_San_Xuat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Danh_Gia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Link_Film)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Link_Trailer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Chung_Film_Id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

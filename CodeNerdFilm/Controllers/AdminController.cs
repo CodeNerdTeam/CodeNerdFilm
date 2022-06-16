@@ -214,7 +214,7 @@ namespace CodeNerd_Film.Controllers
                     //Luu vao CSDL
                     UpdateModel(f);
                     data.SaveChanges();
-                    return RedirectToAction("Trailer");
+                    return RedirectToAction("Film");
                 }
             }
         }
@@ -251,16 +251,18 @@ namespace CodeNerd_Film.Controllers
         [ValidateInput(false)]
         public ActionResult ThemTheLoaiFilm(FormCollection collection, The_Loai t)
         {
+            var ten = collection["ten"];
+
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
             else
             {
-                var ten = collection["ten"];
+                var check = data.The_Loai.SingleOrDefault(x => x.Ten == ten);
                 if (string.IsNullOrEmpty(ten))
                 {
                     ViewData["ErrorTTL"] = "Không được để trống";
                 }
-                else if (ten == null)
+                else if (check != null)
                 {
                     ViewData["ErrorTTL"] = "Thể loại này đã có";
                 }
@@ -318,17 +320,19 @@ namespace CodeNerd_Film.Controllers
         [HttpPost]
         public ActionResult ChinhSuaTheLoaiFilm(int id, FormCollection collection)
         {
+            var ten = collection["ten"];
+
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
             else
             {
                 The_Loai t = data.The_Loai.SingleOrDefault(n => n.Id == id);
-                var ten = collection["ten"];
+                var check = data.The_Loai.SingleOrDefault(x => x.Ten == ten);
                 if (string.IsNullOrEmpty(ten))
                 {
                     ViewData["ErrorCSTL"] = "Không được để trống";
                 }
-                else if (ten != null)
+                else if (check != null)
                 {
                     ViewData["ErrorCSTL"] = "Thể loại này đã có";
                 }
@@ -375,16 +379,17 @@ namespace CodeNerd_Film.Controllers
         [ValidateInput(false)]
         public ActionResult ThemQuocGia(FormCollection collection, Quoc_Gia q)
         {
+            var ten = collection["ten"];
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
             else
             {
-                var ten = collection["ten"];
+                var check = data.Quoc_Gia.SingleOrDefault(x => x.Ten == ten);
                 if (string.IsNullOrEmpty(ten))
                 {
                     ViewData["ErrorQG"] = "Không được để trống";
                 }
-                else if (ten != null)
+                else if (check != null)
                 {
                     ViewData["ErrorQG"] = "Quốc gia này đã tồn tại";
                 }
@@ -409,7 +414,7 @@ namespace CodeNerd_Film.Controllers
                 return RedirectToAction("Login", "Admin");
             else
             {
-                var sach = from t in data.The_Loai where t.Id == id select t;
+                var sach = from t in data.Quoc_Gia where t.Id == id select t;
                 return View(sach.SingleOrDefault());
             }
         }
@@ -442,17 +447,19 @@ namespace CodeNerd_Film.Controllers
         [HttpPost]
         public ActionResult ChinhSuaQuocGia(int id, FormCollection collection)
         {
+            var ten = collection["ten"];
+
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
             else
             {
                 Quoc_Gia qg = data.Quoc_Gia.SingleOrDefault(n => n.Id == id);
-                var ten = collection["ten"];
+                var check = data.Quoc_Gia.SingleOrDefault(x => x.Ten == ten);
                 if (string.IsNullOrEmpty(ten))
                 {
                     ViewData["ErrorCSQG"] = "Không được để trống";
                 }
-                else if (ten != null)
+                else if (check != null)
                 {
                     ViewData["ErrorCSQG"] = "Quốc gia này đã tồn tại";
                 }

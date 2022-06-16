@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    Layout = "~/Views/Shared/_Layout_RegisterUser.cshtml";
 }
 
 <h2 style="text-transform: uppercase"><strong>Đăng ký thành viên</strong></h2>
@@ -34,18 +34,8 @@
         <div class="form-group">
             <label class="control-label col-md-2">Mật khẩu: </label>
             <div class="col-md-10">
-                <input type="password" name="matkhau" id="matkhau" class="form-control">
+                <input type="password" name="Mat_Khau" id="Mat_Khau" class="form-control">
                 @Html.ValidationMessageFor(model => model.Mat_Khau, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="matkhaunhaplai">Nhập lại mật khẩu: </label>
-            <div class="col-md-10">
-                <input class="form-control text-box single-line input-validation-error"
-                       data-val="true" data-val-required="Phải nhập mật khẩu xác nhận!" id="matkhaunhaplai" name="matkhaunhaplai" type="password"
-                       value="" aria-invalid="true"/>
-                @ViewData["MatKhauGiongNhau"]
             </div>
         </div>
 
@@ -68,7 +58,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Ngày sinh: </label>
             <div class="col-md-10">
-                <input type="date" id="ngaysinh" name="ngaysinh" class="form-control"/>
+                <input type="date" id="Ngay_Sinh" name="Ngay_Sinh" class="form-control"/>
                 @Html.ValidationMessageFor(model => model.Ngay_Sinh, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -80,10 +70,6 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Trở về trang chủ", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

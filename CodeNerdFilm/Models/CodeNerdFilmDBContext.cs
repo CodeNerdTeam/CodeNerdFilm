@@ -36,10 +36,6 @@ namespace CodeNerdFilm.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Nguoi_Dung>()
-                .Property(e => e.Ho_Ten)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Nguoi_Dung>()
                 .Property(e => e.Dien_Thoai)
                 .IsUnicode(false);
 
