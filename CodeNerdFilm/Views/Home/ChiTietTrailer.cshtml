@@ -1,12 +1,11 @@
 ﻿@model CodeNerdFilm.Models.Trailer
 @using CodeNerdFilm.Models;
-
 @{
     ViewBag.Title = "ChiTietTrailer";
-    Layout = "~/Views/Shared/_LayoutUser_Logged.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Index", "NguoiDung", FormMethod.Get))
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
 {
     <div class="widget_search">
         <form>
@@ -21,7 +20,7 @@
 <ol class="breadcrumb">
     <li>
         <span>
-            <a href="@Url.Action("Index", "NguoiDung")">Code Nerd</a>
+            <a href="@Url.Action("Index", "Home")">Code Nerd</a>
         </span>
         /
         <span>
@@ -42,7 +41,7 @@
                         <img src="@Html.DisplayFor(model => model.Hinh)" alt="Hình thumbnail" />
                         <ul class="btn-block">
                             <li class="item">
-                                <a href="@Url.Action("XemTrailer", "NguoiDung", new { id = Model.Id } )" class="btn btn-success btn-film-trailer" @Html.DisplayFor(model => model.Tieu_De)>Trailer</a>
+                                <a href="@Url.Action("XemTrailer", "Home", new { id = Model.Id } )" class="btn btn-success btn-film-trailer" @Html.DisplayFor(model => model.Tieu_De)>Trailer</a>
                             </li>
                         </ul>
                     </div>
@@ -172,8 +171,8 @@
             </div>
         </blockquote>
         <div>
+        </div>
     </div>
-</div>
 </div>
 
 <style>
@@ -544,3 +543,4 @@
         font-size: 11px;
     }
 </style>
+

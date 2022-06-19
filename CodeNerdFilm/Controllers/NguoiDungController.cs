@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using CodeNerdFilm.Models;
 using Scrypt;
 using PagedList;
+using System.Data.Entity;
 
 namespace CodeNerdFilm.Controllers
 {
@@ -28,37 +29,37 @@ namespace CodeNerdFilm.Controllers
                 int pagesize = 10;
                 // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
                 int pagenum = (page ?? 1);
-                return View(data.Films.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+                return View(data.Films.Where(n => n.Ten.Contains(search) || n.Tieu_De.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
             }
         }
 
         // Trang trailer
-        public ActionResult Trailer(int? page, string search)
+        public ActionResult Trailer(int? page)
         {
             if (Session["Taikhoannguoidung"] == null)
                 return RedirectToAction("Login", "NguoiDung");
             else
             {
-                // Kích thước trang = số mẫu tin cho 1 trang
-                int pagesize = 10;
-                // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
-                int pagenum = (page ?? 1);
-                return View(data.Trailers.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+                if (page == null) page = 1;
+                var trailers = (from s in data.Trailers select s).OrderBy(x => x.Id);
+                int pageSize = 3;
+                int pageNum = page ?? 1;
+                return View(trailers.ToPagedList(pageNum, pageSize));
             }
         }
 
         // Trang film lẻ
-        public ActionResult FilmLe(int? page, string search)
+        public ActionResult FilmLe(int? page)
         {
             if (Session["Taikhoannguoidung"] == null)
                 return RedirectToAction("Login", "NguoiDung");
             else
             {
-                // Kích thước trang = số mẫu tin cho 1 trang
-                int pagesize = 10;
-                // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
-                int pagenum = (page ?? 1);
-                return View(data.Films.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Chung_Film_Id == 1).ToPagedList(pagenum, pagesize));
+                if (page == null) page = 1;
+                var films = (from s in data.Films select s).OrderBy(x => x.Chung_Film_Id == 1);
+                int pageSize = 10;
+                int pageNum = page ?? 1;
+                return View(films.ToPagedList(pageNum, pageSize));
             }
         }
 
@@ -110,6 +111,7 @@ namespace CodeNerdFilm.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(FormCollection f)
         {
             var Ten_Dang_Nhap = f["Ten_Dang_Nhap"];
@@ -120,11 +122,14 @@ namespace CodeNerdFilm.Controllers
             else if (String.IsNullOrEmpty(Mat_Khau))
                 ViewData["ErrorMK"] = "Vui lòng nhập mật khẩu";
             else
-            {
+            {                
                 var user = data.Nguoi_Dung.SingleOrDefault(n => n.Ten_Dang_Nhap == Ten_Dang_Nhap && n.Mat_Khau == Mat_Khau && n.Quyen == 2);
                 if (user != null)
                 {
+
                     Session["Taikhoannguoidung"] = user;
+                    Session["TenNguoiDung"] = user.Ho_Ten;
+                    Session["IdNguoiDung"] = user.Id.ToString();
                     return RedirectToAction("Index", "NguoiDung");
                 }
                 else
@@ -172,17 +177,47 @@ namespace CodeNerdFilm.Controllers
         //
 
         // 1. Trung Quốc
-        public ActionResult TrungQuoc(int? page, string search)
+        public ActionResult QGTrungQuoc(int? page)
         {
             if (Session["Taikhoannguoidung"] == null)
                 return RedirectToAction("Login", "NguoiDung");
             else
             {
                 if (page == null) page = 1;
-                var film = (from s in data.Films select s).OrderBy(x => x.Id == x.Id && x.Quoc_Gia_Id == 6);
+                var films = (from s in data.Films select s).OrderByDescending(x => x.Quoc_Gia_Id == 6);
                 int pageSize = 10;
                 int pageNum = page ?? 1;
-                return View(film.ToPagedList(pageNum, pageSize));
+                return View(films.ToPagedList(pageNum, pageSize));
+            }
+        }
+
+        // 2. Thái Lan
+        public ActionResult QGThaiLan(int? page)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                if (page == null) page = 1;
+                var films = (from s in data.Films select s).OrderBy(x => x.Quoc_Gia_Id == 5);
+                int pageSize = 10;
+                int pageNum = page ?? 1;
+                return View(films.ToPagedList(pageNum, pageSize));
+            }
+        }
+
+        // 3. Mỹ
+        public ActionResult QGMy(int? page)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                if (page == null) page = 1;
+                var films = (from s in data.Films select s).OrderBy(x => x.Quoc_Gia_Id == 1);
+                int pageSize = 10;
+                int pageNum = page ?? 1;
+                return View(films.ToPagedList(pageNum, pageSize));
             }
         }
 
@@ -198,5 +233,74 @@ namespace CodeNerdFilm.Controllers
                 return View(film.SingleOrDefault());
             }
         }
+
+        //
+        // Trang xem trailer
+        public ActionResult XemTrailer(int id)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                var trailers = from f in data.Trailers where f.Id == id select f;
+                return View(trailers.SingleOrDefault());
+            }
+        }
+
+        //
+        // Trang xem trailer từ trang film
+        public ActionResult Xem_Trailer(int id)
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                var films = from f in data.Films where f.Id == id select f;
+                return View(films.SingleOrDefault());
+            }
+        }
+
+        /*//
+        // Trang thông tin người dùng
+        [HttpPost]
+        public ActionResult ThongTinNguoiDung()
+        {
+            if (Session["Taikhoannguoidung"] == null)
+                return RedirectToAction("Login", "NguoiDung");
+            else
+            {
+                int userId = Convert.ToInt32(Session["Taikhoannguoidung"]);
+                Nguoi_Dung obj = data.Nguoi_Dung.Find(userId);
+                var ten = obj.Ho_Ten;
+                var email = obj.Email;
+                var dienthoai = obj.Dien_Thoai;
+                var ngaysinh = obj.Ngay_Sinh;
+
+                if (string.IsNullOrEmpty(ten))
+                {
+                    ViewData["ErrorRong"] = "Không được để trống";
+                }
+                else if (string.IsNullOrEmpty(email))
+                {
+                    ViewData["ErrorRong"] = "Không được để trống";
+                }
+                if (string.IsNullOrEmpty(dienthoai))
+                {
+                    ViewData["ErrorRong"] = "Không được để trống";
+                }
+                else
+                {
+                    obj.Ho_Ten = ten;
+                    obj.Email = email;
+                    obj.Dien_Thoai = dienthoai;
+                    obj.Ngay_Sinh = ngaysinh;
+                    UpdateModel(obj);
+                    data.SaveChanges();
+                    ViewBag.ThongBao = "Lưu thành công";
+                    return RedirectToAction("ThongTinNguoiDung");
+                }
+                return View();
+            }
+        }*/
     }
 }

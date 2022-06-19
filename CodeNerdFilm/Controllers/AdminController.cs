@@ -82,7 +82,7 @@ namespace CodeNerd_Film.Controllers
                 int pagesize = 10;
                 // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
                 int pagenum = (page ?? 1);
-                return View(data.Films.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+                return View(data.Films.Where(n => n.Ten.Contains(search) || n.Tieu_De.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
             }
         }
 
@@ -221,7 +221,7 @@ namespace CodeNerd_Film.Controllers
 
         //
         // 6. Hiện thị danh sách thể loại film
-        public ActionResult TheLoai(int? page)
+        public ActionResult TheLoai(int? page, string search)
         {
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
@@ -231,7 +231,7 @@ namespace CodeNerd_Film.Controllers
                 int pagesize = 5;
                 // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
                 int pagenum = (page ?? 1);
-                return View(data.The_Loai.ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+                return View(data.The_Loai.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
             }
         }
 
@@ -349,7 +349,7 @@ namespace CodeNerd_Film.Controllers
 
         //
         // 10. Hiện thị danh sách quốc gia
-        public ActionResult QuocGia(int? page)
+        public ActionResult QuocGia(int? page, string search)
         {
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
@@ -359,7 +359,7 @@ namespace CodeNerd_Film.Controllers
                 int pagesize = 5;
                 // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
                 int pagenum = (page ?? 1);
-                return View(data.Quoc_Gia.ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+                return View(data.Quoc_Gia.Where(n => n.Ten.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
             }
         }
 
@@ -475,7 +475,7 @@ namespace CodeNerd_Film.Controllers
         }
 
         // 14. Hiện thị danh sách trailer
-        public ActionResult Trailer(int? page)
+        public ActionResult Trailer(int? page, string search)
         {
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
@@ -485,7 +485,7 @@ namespace CodeNerd_Film.Controllers
                 int pagesize = 10;
                 // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
                 int pagenum = (page ?? 1);
-                return View(data.Trailers.ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
+                return View(data.Trailers.Where(n => n.Ten.Contains(search) || n.Tieu_De.Contains(search) || search == null).ToList().OrderByDescending(n => n.Id).ToPagedList(pagenum, pagesize));
             }
         }
 

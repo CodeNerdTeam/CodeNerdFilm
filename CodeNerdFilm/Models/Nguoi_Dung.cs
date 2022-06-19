@@ -18,10 +18,12 @@ namespace CodeNerdFilm.Models
         public string Ten_Dang_Nhap { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         public string Mat_Khau { get; set; }
 
         [Required]
         [StringLength(256)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [StringLength(15)]

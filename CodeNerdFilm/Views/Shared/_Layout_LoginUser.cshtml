@@ -16,14 +16,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("CODE NERD", "Index", "NguoiDung", new { area = "" }, new { @class = "navbar-brand header-title" })
+                @Html.ActionLink("CODE NERD", "Index", "Home", new { area = "" }, new { @class = "navbar-brand header-title" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>                
-                </ul>
+            <div class="navbar-collapse collapse">               
                 <a href="@Url.Action("Register", "NguoiDung")" class="button">Đăng ký</a>
             </div>
         </div>

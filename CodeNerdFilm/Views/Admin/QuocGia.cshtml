@@ -11,6 +11,23 @@
 <p>
     @Html.ActionLink("THÊM MỚI", "ThemQuocGia", "Admin")
 </p>
+
+@using (Html.BeginForm("QuocGia", "Admin", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="Search" />
+}
+
+@if (Model.Count() == 0)
+{
+    <script>
+
+            setTimeout(function () {
+                alert("Không có dữ liệu");
+            },100)
+    </script>
+}
+<br />
 <table class="table" border="1">
     <tr>
         <th>

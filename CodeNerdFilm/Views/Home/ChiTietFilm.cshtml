@@ -1,4 +1,5 @@
-﻿@model CodeNerdFilm.Models.Film
+﻿@model CodeNerdFilm.Models.Trailer
+@using CodeNerdFilm.Models;
 
 @{
     ViewBag.Title = "ChiTietFilm";
@@ -6,139 +7,539 @@
 }
 
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Trang_Thai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Trang_Thai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tieu_De)
-        </dt>
-
-        <dd>
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <div class="widget_search">
+        <form>
+            @Html.TextBox("search", null, new { placeholder = "Tìm kiếm tên phim..." })
+            <input value=" " type="submit">
+        </form>
+    </div>
+}
+<br />
+<br />
+<br />
+<ol class="breadcrumb">
+    <li>
+        <span>
+            <a href="@Url.Action("Index", "Home")">Code Nerd</a>
+        </span>
+        /
+        <span>
+            @Html.DisplayFor(model => model.Chung_Film.Ten)
+        </span>
+        /
+        <span>
             @Html.DisplayFor(model => model.Tieu_De)
-        </dd>
+        </span>
+    </li>
+</ol>
+<div class="row">
+    <div class="block-wrapper page-single">
+        <div class="movie-info">
+            <dl class="dl-horizontal">
+                <div class="col-6 movie-image">
+                    <div class="movie-l-img">
+                        <img src="@Html.DisplayFor(model => model.Hinh)" alt="Hình thumbnail" />
+                        <ul class="btn-block">
+                            <li class="item">
+                                <a href="@Url.Action("Xem_Trailer", "Home", new { id = Model.Id } )" class="btn btn-success btn-film-trailer" @Html.DisplayFor(model => model.Tieu_De)>Trailer</a>
+                            </li>
+                            <li class="item">
+                                <a itemprop="target" id="btn-film-watch" class="btn btn-green btn" @Html.DisplayFor(model => model.Tieu_De) href="#">
+                                    <i class="fa fa-film" aria-hidden="true"></i> Xem phim
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ten)
-        </dt>
+                <div class="col-6 movie-detail">
+                    <h1 class="movie-title">
+                        <span class="title-1">
+                            @Html.DisplayFor(model => model.Tieu_De)
+                        </span>
+                        <span class="title-2">
+                            @Html.DisplayFor(model => model.Ten)
+                        </span>
+                    </h1>
+                    <div class="slimScrollDiv">
+                        <div class="movie-meta-info">
+                            <div class="movie-dl">
+                                <dt class="movie-dt">
+                                    Trạng thái:
+                                </dt>
+                                <dd class="movie-dd status">
+                                    @Html.DisplayFor(model => model.Trang_Thai)
+                                </dd>
+                                <dt class="movie-dt">
+                                    Quốc gia:
+                                </dt>
+                                <dd class="movie-dd status">
+                                    @Html.DisplayFor(model => model.Quoc_Gia.Ten)
+                                </dd>
+                                <dt class="movie-dt">
+                                    Năm sản xuất:
+                                </dt>
+                                <dd class="movie-dd status">
+                                    @Html.DisplayFor(model => model.Nam_San_Xuat)
+                                </dd>
+                                <dt class="movie-dt">
+                                    Thời lượng:
+                                </dt>
+                                <dd class="movie-dd status">
+                                    @Html.DisplayFor(model => model.Thoi_Luong)
+                                </dd>
+                                <dt class="movie-dt">
+                                    Thể loại:
+                                </dt>
+                                <dd class="movie-dd status">
+                                    @Html.DisplayFor(model => model.The_Loai.Ten)
+                                </dd>
+                                <dt class="movie-dt">
+                                    Đạo diễn:
+                                </dt>
+                                <dd class="movie-dd status">
+                                    @Html.DisplayFor(model => model.Dao_Dien)
+                                </dd>
+                                <dt class="movie-dt">
+                                    Công ty sản xuất:
+                                </dt>
+                                <dd class="movie-dd status">
+                                    @Html.DisplayFor(model => model.Cong_Ty_San_Xuat)
+                                </dd>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-rating">
+                        <p>
+                            Đánh giá:
+                        </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ten)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quoc_Gia_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quoc_Gia_Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nam_San_Xuat)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nam_San_Xuat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Thoi_Luong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Thoi_Luong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.The_Loai_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.The_Loai_Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Noi_Dung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Noi_Dung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dao_Dien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dao_Dien)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dien_Vien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dien_Vien)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cong_Ty_San_Xuat)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cong_Ty_San_Xuat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Danh_Gia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Danh_Gia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Hinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Link_Film)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Link_Film)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Link_Trailer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Link_Trailer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Chung_Film_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Chung_Film_Id)
-        </dd>
-
-    </dl>
+                        <div id="star">
+                            <dd class="movie-dd status">
+                                @if (@Model.Danh_Gia == 0)
+                                {
+                                    <label class="movie-dt" title="No star rating">Không có đánh giá</label>
+                                }
+                                @if (@Model.Danh_Gia == 1)
+                                {
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="one star rating" />
+                                }
+                                @if (@Model.Danh_Gia == 2)
+                                {
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
+                                }
+                                @if (@Model.Danh_Gia == 3)
+                                {
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                                }
+                                @if (@Model.Danh_Gia == 4)
+                                {
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                                }
+                                @if (@Model.Danh_Gia == 5)
+                                {
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                                    <img srcset="/Content/Images/Star.png" class="rating" title="five star rating" />
+                                }
+                            </dd>
+                        </div>
+                    </div>
+                </div>
+            </dl>
+            <div class="block-actors">
+                <h2 class="movie-detail-h2">Diễn viên:</h2>
+                <div class="caroufredsel_wrapper">
+                    <ul class="row" id="list_actor_carousel">
+                        <div class="actor-name">
+                        <li class="actor-name-a">@Html.DisplayFor(model => model.Dien_Vien)</li>
+                </div>
+                </ul>
+            </div>
+        </div>
+        <blockquote class="block-movie-content" id="film-content-wrapper">
+            <h2 class="movie-detail-h2">
+                Nội dung:
+            </h2>
+            <div class="content" id="film-content">
+                <dd class="movie-dd status">
+                    @Html.DisplayFor(model => model.Noi_Dung)
+                </dd>
+            </div>
+        </blockquote>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Quay về trang trước", "Index")
-</p>
+</div>
+
+<style>
+    body {
+        background-color: #282828;
+    }
+
+    .rating {
+        width: 25px;
+        height: 25px;
+    }
+
+    dl.dl-horizontal {
+        display: flex;
+    }
+
+    .col-6 {
+        width: 50%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 10px;
+    }
+
+    .movie-l-img {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .movie-l-img img {
+            object-fit: cover;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+    img {
+        vertical-align: middle;
+        border: 0;
+        width: 315px;
+        height: 418.4px;
+        max-width: 100%;
+    }
+
+    .btn-block {
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        width: 100%;
+        background: rgba(0,0,0,.8);
+        padding: 10px 0;
+        margin: 0;
+        list-style: none;
+        display: block;
+    }
+
+        .btn-block .item {
+            display: inline-block;
+            padding: 4px;
+        }
+
+    .btn-primary {
+        color: #ffffff;
+        background-color: #428bca;
+        border-color: #428bca;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.428571429;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .btn-green {
+        color: #ffffff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
+
+    li.item {
+        list-style: none;
+    }
+
+    .item a:hover {
+        opacity: 0.9;
+        color: #fff;
+    }
+
+    .block-actors {
+        margin-top: 10px !important;
+        border: 1px solid #121212;
+        background: #222;
+        padding: 10px;
+        border-radius: 2px;
+        position: relative;
+    }
+
+    .movie-info .movie-detail-h2 {
+        font-size: 14px;
+        font-weight: 700;
+        color: #dacb46;
+        text-transform: uppercase;
+        margin-top: 5px;
+    }
+
+    .caroufredsel_wrapper {
+        display: block;
+        text-align: start;
+        float: none;
+        position: relative;
+        inset: auto;
+        z-index: auto;
+        width: 535px;
+        height: 40px;
+        margin: 0px;
+        overflow: hidden;
+    }
+
+    #list_actor_carousel {
+        text-align: left;
+        float: none;
+        position: absolute;
+        inset: 0px auto auto 0px;
+        margin: 0px;
+        width: 1605px;
+        height: 120px;
+        list-style: none;
+        padding: 0px;
+    }
+
+    .movie-info .movie-title .title-1 {
+        text-transform: uppercase;
+        font: 26px utmcafetaregular;
+        color: #dacb46;
+        display: block;
+    }
+
+    .movie-info .movie-title {
+        margin: 0 0 10px;
+        padding: 0;
+        font-size: initial;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 500;
+        line-height: 1.1;
+        margin: 0 0 10px;
+        padding: 0;
+        font-size: initial;
+    }
+
+    h1 {
+        margin: 0.67em 0;
+    }
+
+    .movie-info .movie-title .title-2 {
+        color: #999;
+        font-size: 12px;
+    }
+
+    .slimScrollDiv {
+        position: relative;
+        overflow: hidden;
+        width: auto;
+        height: 245px;
+    }
+
+    .movie-dt {
+        width: 0px;
+    }
+
+    .movie-info .movie-meta-info {
+        overflow: hidden;
+        width: auto;
+        height: 277px;
+        border-radius: 2px;
+        padding: 5px 8px;
+        line-height: 26px;
+        border: 1px solid #121212;
+        font-size: 12px;
+        color: #bbb;
+        background: #222;
+    }
+
+    dt, dd {
+        line-height: unset
+    }
+
+    .dl-horizontal dt {
+        text-align: unset;
+        width: auto;
+        margin-right: 6px;
+    }
+
+    .dl-horizontal dd {
+        margin-left: unset;
+    }
+
+    .box-rating p {
+        font-size: 20px;
+        color: #f78144;
+    }
+
+    p {
+        margin: 0px;
+        ;
+    }
+
+    #star {
+        cursor: pointer;
+        width: 200px;
+    }
+
+    .box-rating #star {
+        display: inline-block;
+    }
+
+    img {
+        border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+
+    .box-rating {
+        margin-top: 10px;
+        padding: 10px;
+        background: #222;
+        border: 1px solid #121212;
+        border-radius: 2px;
+    }
+
+    .page-single {
+        padding: 10px;
+        width: 670px;
+    }
+
+    .block-wrapper {
+        position: relative;
+        background: #1b1b1b;
+        border-bottom: 1px solid #868489;
+        height: auto;
+        display: block;
+    }
+
+    a {
+        color: #46E1FF;
+        text-decoration: none;
+    }
+
+    .block-actors .actor-name .actor-name-a {
+        display: block;
+        font-size: 12px;
+        padding: 5px 0 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        color: #46E1FF;
+    }
+
+    #film-content-wrapper > #film-content {
+        overflow: hidden;
+        transition: 1s;
+    }
+
+    .block-movie-content, .block-actors {
+        margin-top: 10px !important;
+        border: 1px solid #121212;
+        background: #222;
+        padding: 10px;
+        border-radius: 2px;
+        position: relative;
+    }
+
+        .block-movie-content .content {
+            color: #bbb;
+            font-size: 13px;
+            font-family: arial;
+            line-height: 24px;
+        }
+
+    ol.breadcrumb {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+        ol.breadcrumb > li {
+            white-space: nowrap;
+        }
+
+    .breadcrumb {
+        padding: 5px 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        list-style: none;
+        background-color: #1b1b1b;
+        border-radius: 3px;
+        color: #cccccc;
+    }
+
+        .breadcrumb > li {
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .breadcrumb a:hover {
+            color: #dacb46;
+            text-decoration: none;
+        }
+
+    .row {
+        margin-right: unset;
+        margin-left: unset;
+    }
+
+    .widget_search {
+        display: inline-block;
+        float: left;
+        margin-bottom: 12px;
+        transform: translateX(150%);
+        position: relative;
+    }
+
+        .widget_search input[type=text] {
+            width: 325px;
+            outline: none;
+            border: 1px;
+            background-color: #303137;
+            border-radius: 100px;
+            color: #9f9f9f;
+            display: inline-block;
+            padding: 8px 40px 8px 15px;
+            text-decoration: none;
+            box-shadow: inset 1px 1px 1px rgb(0 0 0 / 40%), 1px 1px 0 rgb(255 255 255 / 15%);
+        }
+
+    input {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        margin-top: 8px;
+    }
+
+    .widget_search input[type=submit] {
+        background: url(../../Content/Images/search.png) no-repeat;
+        border: 0;
+        width: 32px;
+        display: inline-block;
+        margin-left: -36px;
+        top: 10px;
+        outline: none;
+    }
+
+    html input[type="submit"] {
+        cursor: pointer;
+        -webkit-appearance: button;
+    }
+</style>

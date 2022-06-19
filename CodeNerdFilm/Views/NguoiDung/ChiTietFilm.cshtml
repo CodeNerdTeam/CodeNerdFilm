@@ -6,6 +6,16 @@
     Layout = "~/Views/Shared/_LayoutUser_Logged.cshtml";
 }
 
+@using (Html.BeginForm("Index", "NguoiDung", FormMethod.Get))
+{
+    <div class="widget_search">
+        <form>
+            @Html.TextBox("search", null, new { placeholder = "Tìm kiếm tên phim..." })
+            <input value=" " type="submit">
+        </form>
+    </div>
+}
+<br /><br /><br />
 <ol class="breadcrumb">
     <li>
         <span>
@@ -30,7 +40,7 @@
                         <img src="@Html.DisplayFor(model => model.Hinh)" alt="Hình thumbnail" />
                         <ul class="btn-block">
                             <li class="item">
-                                <a href="@Url.Action("XemFilm", "NguoiDung", new { id = Model.Id } )" class="btn btn-success btn-film-trailer" @Html.DisplayFor(model => model.Tieu_De)>Trailer</a>
+                                <a href="@Url.Action("Xem_Trailer", "NguoiDung", new { id = Model.Id } )" class="btn btn-success btn-film-trailer" @Html.DisplayFor(model => model.Tieu_De)>Trailer</a>
                             </li>
                             <li class="item">
                                 <a itemprop="target" id="btn-film-watch" class="btn btn-green btn" @Html.DisplayFor(model => model.Tieu_De) href="#">
@@ -256,6 +266,7 @@
     li.item {
         list-style: none;
     }
+
     .item a:hover {
         opacity: 0.9;
         color: #fff;
@@ -456,6 +467,7 @@
         max-width: 100%;
         overflow: hidden;
     }
+
         ol.breadcrumb > li {
             white-space: nowrap;
         }
@@ -469,13 +481,62 @@
         border-radius: 3px;
         color: #cccccc;
     }
+
         .breadcrumb > li {
             display: inline-block;
             text-transform: uppercase;
         }
 
+        .breadcrumb a:hover {
+            color: #dacb46;
+            text-decoration: none;
+        }
+
     .row {
         margin-right: unset;
         margin-left: unset;
+    }
+
+    .widget_search {
+        display: inline-block;
+        float: left;
+        margin-bottom: 12px;
+        transform: translateX(150%);
+        position: relative;
+    }
+
+        .widget_search input[type=text] {
+            width: 325px;
+            outline: none;
+            border: 1px;
+            background-color: #303137;
+            border-radius: 100px;
+            color: #9f9f9f;
+            display: inline-block;
+            padding: 8px 40px 8px 15px;
+            text-decoration: none;
+            box-shadow: inset 1px 1px 1px rgb(0 0 0 / 40%), 1px 1px 0 rgb(255 255 255 / 15%);
+        }
+
+    input {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        margin-top: 8px;
+    }
+
+    .widget_search input[type=submit] {
+        background: url(../../Content/Images/search.png) no-repeat;
+        border: 0;
+        width: 32px;
+        display: inline-block;
+        margin-left: -36px;
+        top: 10px;
+        outline: none;
+    }  
+
+    html input[type="submit"] {
+        cursor: pointer;
+        -webkit-appearance: button;
     }
 </style>

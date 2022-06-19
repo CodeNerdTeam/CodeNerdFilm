@@ -186,7 +186,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin_Logged.cshtml" />
     <Content Include="Views\Shared\_Layout_LoginAdmin.cshtml" />
     <Content Include="Views\Admin\ChinhSuaFilm.cshtml" />
@@ -221,6 +220,17 @@
     <Content Include="Views\NguoiDung\Trailer.cshtml" />
     <Content Include="Views\NguoiDung\ChiTietTrailer.cshtml" />
     <Content Include="Views\NguoiDung\XemFilm.cshtml" />
+    <Content Include="Views\NguoiDung\XemTrailer.cshtml" />
+    <Content Include="Views\NguoiDung\Xem_Trailer.cshtml" />
+    <Content Include="Views\NguoiDung\QGMy.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Trailer.cshtml" />
+    <Content Include="Views\Home\FilmLe.cshtml" />
+    <Content Include="Views\Home\ChiTietTrailer.cshtml" />
+    <Content Include="Views\Home\Xem_Trailer.cshtml" />
+    <Content Include="Views\Home\XemTrailer.cshtml" />
+    <Content Include="Views\Home\XemFilm.cshtml" />
+    <Content Include="Views\NguoiDung\ThongTinNguoiDung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

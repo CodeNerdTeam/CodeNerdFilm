@@ -1,10 +1,9 @@
-﻿@model PagedList.IPagedList<CodeNerdFilm.Models.Trailer>
+﻿@model PagedList.IPagedList<CodeNerdFilm.Models.Film>
 @using CodeNerdFilm.Models;
 @using PagedList.Mvc;
-
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutUser_Logged.cshtml";
+    ViewBag.Title = "FilmLe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div>
@@ -18,7 +17,7 @@
     <div class="snowflake">❆</div>
 </div>
 
-@using (Html.BeginForm("Index", "NguoiDung", FormMethod.Get))
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
 {
     <div class="widget_search">
         <form>
@@ -43,7 +42,7 @@
     @foreach (var item in Model)
     {
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 mt-16">
-            <a href="@Url.Action("ChiTietTrailer", "NguoiDung", new { id = item.Id } )">
+            <a href="@Url.Action("ChiTietFilm", "Home", new { id = item.Id } )">
                 <div class="box-content">
                     <div class="box-body">
                         <span class="label-img">@item.Trang_Thai</span>
@@ -63,7 +62,7 @@
         Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
     </div>
     <div class="MenuTrang">
-        @Html.PagedListPager(Model, page => Url.Action("Trailer", new { page = page }))
+        @Html.PagedListPager(Model, page => Url.Action("FilmLe", new { page = page }))
     </div>
 </div>
 

@@ -1,10 +1,9 @@
 ﻿@model PagedList.IPagedList<CodeNerdFilm.Models.Trailer>
 @using CodeNerdFilm.Models;
 @using PagedList.Mvc;
-
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutUser_Logged.cshtml";
+    ViewBag.Title = "Trailer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div>
@@ -18,7 +17,7 @@
     <div class="snowflake">❆</div>
 </div>
 
-@using (Html.BeginForm("Index", "NguoiDung", FormMethod.Get))
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
 {
     <div class="widget_search">
         <form>
@@ -39,11 +38,11 @@
 
 <div class="row">
     <hr style="border: none" /><hr style="border: none" />
-    <h2 class="title_list-film">Danh sách phim</h2>
+    <h2 class="title_list-film">Danh sách trailer</h2>
     @foreach (var item in Model)
     {
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 mt-16">
-            <a href="@Url.Action("ChiTietTrailer", "NguoiDung", new { id = item.Id } )">
+            <a href="@Url.Action("ChiTietTrailer", "Home", new { id = item.Id } )">
                 <div class="box-content">
                     <div class="box-body">
                         <span class="label-img">@item.Trang_Thai</span>
@@ -368,3 +367,4 @@
         -webkit-appearance: button;
     }
 </style>
+
