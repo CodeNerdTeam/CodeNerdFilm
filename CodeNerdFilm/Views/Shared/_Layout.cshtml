@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Code Nerd</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -26,11 +26,11 @@
                         <a style="cursor: pointer">Thể Loại</a>
                         <div class="list-type sub-container">
                             <ul class="sub">
-                                <li>@Html.ActionLink("Kinh dị", "KinhDi", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Hành động", "HanhDong", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Viễn tưởng", "VienTuong", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Hoạt hình", "HoatHinh", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Cổ trang", "CoTrang", "NguoiDung")</li>
+                                <li>@Html.ActionLink("Kinh dị", "TLKinhDi", "Home")</li>
+                                <li>@Html.ActionLink("Hành động", "TLHanhDong", "Home")</li>
+                                <li>@Html.ActionLink("Viễn tưởng", "TLVienTuong", "Home")</li>
+                                <li>@Html.ActionLink("Hoạt hình", "TLHoatHinh", "Home")</li>
+                                <li>@Html.ActionLink("Cổ trang", "TLCoTrang", "Home")</li>
                             </ul>
                         </div>
                     </li>
@@ -38,19 +38,20 @@
                         <a style="cursor: pointer">Quốc Gia</a>
                         <div class="list-type sub-container">
                             <ul class="sub">
-                                <li>@Html.ActionLink("Trung Quốc", "TrungQuoc", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Nhật Bản", "NhatBan", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Thái Lan", "QGThaiLan", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Anh", "NhatBan", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Mỹ", "QGMy", "NguoiDung")</li>
+                                <li>@Html.ActionLink("Trung Quốc", "QGTrungQuoc", "Home")</li>
+                                <li>@Html.ActionLink("Nhật Bản", "QGNhatBan", "Home")</li>
+                                <li>@Html.ActionLink("Thái Lan", "QGThaiLan", "Home")</li>
+                                <li>@Html.ActionLink("Châu Âu", "QGChauAu", "Home")</li>
+                                <li>@Html.ActionLink("Mỹ", "QGMy", "Home")</li>
+                                <li>@Html.ActionLink("Hàn Quốc", "QGHanQuoc", "Home")</li>
                             </ul>
                         </div>
                     </li>
                     <li>@Html.ActionLink("Phim lẻ", "FilmLe", "Home")</li>
                     <li>@Html.ActionLink("Trailer", "Trailer", "Home")</li>
                 </ul>
-                <a href="@Url.Action("Register","NguoiDung")" class="btn btn-default">Đăng ký</a>
-                <a href="@Url.Action("Login","NguoiDung")" class="btn btn-default">Đăng nhập</a>
+                <a href="@Url.Action("Login", "NguoiDung")" class="button">Đăng nhập</a>
+                <a href="@Url.Action("Register", "NguoiDung")" class="button">Đăng ký</a>
             </div>
         </div>
     </div>
@@ -114,6 +115,11 @@
         float: right;
         cursor: pointer;
     }
+
+        .button:hover {
+            text-decoration: none;
+            color: #fff;
+        }
 
     #mega-menu-1 {
         list-style: none;
@@ -206,6 +212,7 @@
             display: block;
             text-transform: none;
             font-size: 13px;
+            width: 100%;
         }
 
     ul.sub > li:hover {

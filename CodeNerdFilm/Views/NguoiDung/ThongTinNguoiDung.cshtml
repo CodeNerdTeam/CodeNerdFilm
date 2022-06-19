@@ -1,55 +1,118 @@
 ﻿@model CodeNerdFilm.Models.Nguoi_Dung
+@using CodeNerdFilm.Models;
 
 @{
-    ViewBag.Title = "ThongTinNguoiDung";
+    ViewBag.Title = "Thông tin người dùng";
     Layout = "~/Views/Shared/_LayoutUser_Logged.cshtml";
+}
+
+@{
+    Nguoi_Dung user = (Nguoi_Dung)Session["Taikhoannguoidung"];
 }
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <hr />
+
+    <div class="ah-frame">
+        <div>
+            <span style="color: #f98d8d">Hồ sơ thành viên</span>
+        </div>
+    </div>
+
+    <div class="form-horizontal info_body">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Biệt danh</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ho_Ten, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="info_container">
+            <div class="info_item">
+            <label class="info_item-title">Biệt danh</label>
+            <div class="">
+                <div class="info_item-info">@user.Ho_Ten</div>
                 @Html.ValidationMessageFor(model => model.Ho_Ten, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Email</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="info_item">
+            <div class="info_item-title">Email</div>
+            <div class="">
+                <div class="info_item-info">@user.Email</div>
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Điện thoại</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Dien_Thoai, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="info_item">
+            <div class="info_item-title">Điện thoại</div>
+            <div class="">
+                <div class="info_item-info">@user.Dien_Thoai</div>
                 @Html.ValidationMessageFor(model => model.Dien_Thoai, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Ngày sinh</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ngay_Sinh, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="info_item">
+            <div class="info_item-title">Ngày sinh</div>
+            <div class="">
+                <div class="info_item-info">@user.Ngay_Sinh</div>
                 @Html.ValidationMessageFor(model => model.Ngay_Sinh, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Lưu" class="btn btn-danger" />
-            </div>
         </div>
     </div>
 }
+
+<style>
+    body {
+        background: #282828
+    }
+
+    .ah-frame {
+        font-size: 15px;
+        padding: 10px;
+        font-weight: 700;
+        display: flex;
+        border-radius: 0;
+        background: #404040;
+        margin: 10px 0;
+        justify-content: space-between;
+        align-items: center;
+        text-transform: uppercase;
+    }
+
+    .info_container {
+        display: flex;
+        flex-direction: column;
+        background: #404040;
+    }
+
+    .info_body {
+        background: #404040;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    .info_item {
+        line-height: 22px;
+        position: relative;
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+        .info_item .info_item-title {
+            font-weight: 700;
+            background: #404040;
+            padding: 2px;
+            color: #ff9393;
+        }
+
+        .info_item .info_item-info {
+            padding: 12px;
+            border: 1px solid #4e4e4e;
+            background: #000;
+            color: #fff;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background .2s linear,border .2s linear;
+            border-radius: 5px;
+        }
+</style>

@@ -136,6 +136,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Global.asax.cs">
@@ -144,6 +145,7 @@
     <Compile Include="Models\Chung_Film.cs" />
     <Compile Include="Models\CodeNerdFilmDBContext.cs" />
     <Compile Include="Models\Film.cs" />
+    <Compile Include="Models\Gmail.cs" />
     <Compile Include="Models\Lien_He.cs" />
     <Compile Include="Models\Nguoi_Dung.cs" />
     <Compile Include="Models\Quoc_Gia.cs" />
@@ -231,6 +233,28 @@
     <Content Include="Views\Home\XemTrailer.cshtml" />
     <Content Include="Views\Home\XemFilm.cshtml" />
     <Content Include="Views\NguoiDung\ThongTinNguoiDung.cshtml" />
+    <Content Include="Views\NguoiDung\TLHanhDong.cshtml" />
+    <Content Include="Views\NguoiDung\TLCoTrang.cshtml" />
+    <Content Include="Views\NguoiDung\TLHoatHinh.cshtml" />
+    <Content Include="Views\NguoiDung\TLVienTuong.cshtml" />
+    <Content Include="Views\NguoiDung\TLKinhDi.cshtml" />
+    <Content Include="Views\NguoiDung\QGTrungQuoc.cshtml" />
+    <Content Include="Views\NguoiDung\QGThaiLan.cshtml" />
+    <Content Include="Views\NguoiDung\QGNhatBan.cshtml" />
+    <Content Include="Views\NguoiDung\QGChauAu.cshtml" />
+    <Content Include="Views\Home\QGTrungQuoc.cshtml" />
+    <Content Include="Views\Home\QGThaiLan.cshtml" />
+    <Content Include="Views\Home\QGNhatBan.cshtml" />
+    <Content Include="Views\Home\QGMy.cshtml" />
+    <Content Include="Views\Home\QGChauAu.cshtml" />
+    <Content Include="Views\Home\TLCoTrang.cshtml" />
+    <Content Include="Views\Home\TLHanhDong.cshtml" />
+    <Content Include="Views\Home\TLHoatHinh.cshtml" />
+    <Content Include="Views\Home\TLKinhDi.cshtml" />
+    <Content Include="Views\Home\TLVienTuong.cshtml" />
+    <Content Include="Views\NguoiDung\QGHanQuoc.cshtml" />
+    <Content Include="Views\Home\QGHanQuoc.cshtml" />
+    <Content Include="Views\Email\SendMail1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

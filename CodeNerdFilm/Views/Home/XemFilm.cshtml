@@ -1,17 +1,26 @@
 ﻿@model CodeNerdFilm.Models.Film
 @using CodeNerdFilm.Models
 @{
-    ViewBag.Title = "XemFilm";
+    ViewBag.Title = "Xem phim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <br />
-<br />
-<div>
+<ol class="breadcrumb">
+    <li>
+        <span>
+            <a href="@Url.Action("Index", "NguoiDung")">Code Nerd</a>
+        </span>
+        /
+        <span>
+            phim
+        </span>
+    </li>
+</ol><div>
     @{
         var link = "https://www.youtube.com/embed/";
         var model = Model.Link_Film;
-        var movielink = link + model;
+        var movielink = @*link +*@ model;
     }
     <iframe width="100%" height="500" src="@movielink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>

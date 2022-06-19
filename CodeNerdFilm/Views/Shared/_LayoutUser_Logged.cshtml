@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Code Nerd</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -26,11 +26,11 @@
                         <a style="cursor: pointer">Thể Loại</a>
                         <div class="list-type sub-container">
                             <ul class="sub">
-                                <li>@Html.ActionLink("Kinh dị", "KinhDi", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Hành động", "HanhDong", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Viễn tưởng", "VienTuong", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Hoạt hình", "HoatHinh", "NguoiDung")</li>
-                                <li>@Html.ActionLink("Cổ trang", "CoTrang", "NguoiDung")</li>
+                                <li>@Html.ActionLink("Kinh dị", "TLKinhDi", "NguoiDung")</li>
+                                <li>@Html.ActionLink("Hành động", "TLHanhDong", "NguoiDung")</li>
+                                <li>@Html.ActionLink("Viễn tưởng", "TLVienTuong", "NguoiDung")</li>
+                                <li>@Html.ActionLink("Hoạt hình", "TLHoatHinh", "NguoiDung")</li>
+                                <li>@Html.ActionLink("Cổ trang", "TLCoTrang", "NguoiDung")</li>
                             </ul>
                         </div>
                     </li>
@@ -38,11 +38,12 @@
                     <a style="cursor: pointer">Quốc Gia</a>
                     <div class="list-type sub-container">
                         <ul class="sub">
-                            <li>@Html.ActionLink("Trung Quốc", "TrungQuoc", "NguoiDung")</li>
-                            <li>@Html.ActionLink("Nhật Bản", "NhatBan", "NguoiDung")</li>
+                            <li>@Html.ActionLink("Trung Quốc", "QGTrungQuoc", "NguoiDung")</li>
+                            <li>@Html.ActionLink("Nhật Bản", "QGNhatBan", "NguoiDung")</li>
                             <li>@Html.ActionLink("Thái Lan", "QGThaiLan", "NguoiDung")</li>
-                            <li>@Html.ActionLink("Anh", "NhatBan", "NguoiDung")</li>
+                            <li>@Html.ActionLink("Châu Âu", "QGChauAu", "NguoiDung")</li>
                             <li>@Html.ActionLink("Mỹ", "QGMy", "NguoiDung")</li>
+                            <li>@Html.ActionLink("Hàn Quốc", "QGHanQuoc", "NguoiDung")</li>
                         </ul>
                     </div>
                     </li>
@@ -54,7 +55,6 @@
                         <p>Hello @Session["TenNguoiDung"]</p>
                         <div class="list-user_container">
                             @Html.ActionLink("Thông tin", "ThongTinNguoiDung", "NguoiDung")
-                            <a href="">Thay đổi mật khẩu</a>
                             <a href="@Url.Action("Logout", "NguoiDung")">Đăng xuất</a>
                         </div>
                     </li>
@@ -213,6 +213,7 @@
             display: block;
             text-transform: none;
             font-size: 13px;
+            width: 100%;
         }
     ul.sub > li:hover {
         background: #292929;
@@ -235,6 +236,9 @@
 
         .list-user_name:hover .list-user_container {
             display: block;
+        }
+
+        .list-user_name > p:hover {
             color: #dacb46;
         }
 

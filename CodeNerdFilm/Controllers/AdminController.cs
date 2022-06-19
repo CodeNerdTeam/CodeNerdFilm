@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using CodeNerdFilm.Models;
+using PagedList;
+using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CodeNerdFilm.Models;
-using PagedList;
 
 
 namespace CodeNerd_Film.Controllers
@@ -77,7 +75,7 @@ namespace CodeNerd_Film.Controllers
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
             else
-            {              
+            {
                 // Kích thước trang = số mẫu tin cho 1 trang
                 int pagesize = 10;
                 // Số thứ tự trang: nêu page là null thì pagenum = 1, ngược lại pagenum = page
@@ -130,7 +128,7 @@ namespace CodeNerd_Film.Controllers
                     data.SaveChanges();
                     return RedirectToAction("Film", "Admin");
                 }
-                
+
             }
         }
 
@@ -559,8 +557,8 @@ namespace CodeNerd_Film.Controllers
                 return RedirectToAction("Login", "Admin");
             else
             {
-                var sach = from f in data.Trailers where f.Id == id select f;
-                return View(sach.SingleOrDefault());
+                var trailers = from f in data.Trailers where f.Id == id select f;
+                return View(trailers.SingleOrDefault());
             }
         }
         [HttpPost, ActionName("XoaTrailer")]
@@ -570,8 +568,8 @@ namespace CodeNerd_Film.Controllers
                 return RedirectToAction("Login", "Admin");
             else
             {
-                Film film = data.Films.SingleOrDefault(n => n.Id == id);
-                data.Films.Remove(film);
+                Trailer trailer = data.Trailers.SingleOrDefault(n => n.Id == id);
+                data.Trailers.Remove(trailer);
                 data.SaveChanges();
                 return RedirectToAction("Trailer");
             }
@@ -604,7 +602,7 @@ namespace CodeNerd_Film.Controllers
             else
             {
                 Trailer t = data.Trailers.SingleOrDefault(n => n.Id == id);
-                
+
                 var Hinh = collection["Hinh"];
                 if (!ModelState.IsValid)
                 {

@@ -1,0 +1,50 @@
+﻿@model CodeNerdFilm.Models.Gmail
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SendMail1</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("SendMail1", "Email", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <center>
+                <table>
+                    <tr>
+                        <td style="width: 80px">
+                            From:
+                        </td>
+                        <td>@Html.TextBoxFor(model => model.From)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Chủ đề:
+                        </td>
+                        <td>@Html.TextBoxFor(model => model.Subject)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nội dung:
+                        </td>
+                        <td>@Html.TextAreaFor(model => model.Body, new { row = "15", cols = "25" })</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Gửi" />
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <span style="color: green">@ViewBag.Message</span>
+            </center>
+        }
+    </div>
+</body>
+</html>

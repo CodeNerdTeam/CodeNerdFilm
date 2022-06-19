@@ -1,8 +1,8 @@
-﻿@model CodeNerdFilm.Models.Trailer
+﻿@model CodeNerdFilm.Models.Film
 @using CodeNerdFilm.Models;
 
 @{
-    ViewBag.Title = "ChiTietFilm";
+    ViewBag.Title = "Chi tiết phim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -46,7 +46,7 @@
                                 <a href="@Url.Action("Xem_Trailer", "Home", new { id = Model.Id } )" class="btn btn-success btn-film-trailer" @Html.DisplayFor(model => model.Tieu_De)>Trailer</a>
                             </li>
                             <li class="item">
-                                <a itemprop="target" id="btn-film-watch" class="btn btn-green btn" @Html.DisplayFor(model => model.Tieu_De) href="#">
+                                <a itemprop="target" id="btn-film-watch" class="btn btn-green btn" @Html.DisplayFor(model => model.Tieu_De) href="@Url.Action("XemFilm", "Home", new { id = Model.Id } )">
                                     <i class="fa fa-film" aria-hidden="true"></i> Xem phim
                                 </a>
                             </li>
@@ -125,17 +125,28 @@
                                 @if (@Model.Danh_Gia == 1)
                                 {
                                     <img srcset="/Content/Images/Star.png" class="rating" title="one star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="one star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="one star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="one star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="one star rating" />
                                 }
                                 @if (@Model.Danh_Gia == 2)
                                 {
                                     <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="two star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="two star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="two star rating" />
+
                                 }
                                 @if (@Model.Danh_Gia == 3)
                                 {
                                     <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="three star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="three star rating" />
+
                                 }
                                 @if (@Model.Danh_Gia == 4)
                                 {
@@ -143,6 +154,7 @@
                                     <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="four star rating" />
                                 }
                                 @if (@Model.Danh_Gia == 5)
                                 {
@@ -189,6 +201,11 @@
     .rating {
         width: 25px;
         height: 25px;
+    }
+
+    .rating-sub {
+        width: 18px;
+        height: 18px;
     }
 
     dl.dl-horizontal {

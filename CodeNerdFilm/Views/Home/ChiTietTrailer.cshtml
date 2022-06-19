@@ -1,7 +1,7 @@
 ﻿@model CodeNerdFilm.Models.Trailer
 @using CodeNerdFilm.Models;
 @{
-    ViewBag.Title = "ChiTietTrailer";
+    ViewBag.Title = "Chi tiết trailer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -118,17 +118,26 @@
                                 @if (@Model.Danh_Gia == 1)
                                 {
                                     <img srcset="/Content/Images/Star.png" class="rating" title="one star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="one star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="one star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="one star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="one star rating" />
                                 }
                                 @if (@Model.Danh_Gia == 2)
                                 {
                                     <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="two star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="two star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="two star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="two star rating" />
                                 }
                                 @if (@Model.Danh_Gia == 3)
                                 {
                                     <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="three star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="three star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="three star rating" />
                                 }
                                 @if (@Model.Danh_Gia == 4)
                                 {
@@ -136,6 +145,7 @@
                                     <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
                                     <img srcset="/Content/Images/Star.png" class="rating" title="four star rating" />
+                                    <img srcset="/Content/Images/star_disabel.png" class="rating-sub" title="four star rating" />
                                 }
                                 @if (@Model.Danh_Gia == 5)
                                 {
@@ -183,6 +193,11 @@
     .rating {
         width: 25px;
         height: 25px;
+    }
+
+    .rating-sub {
+        width: 18px;
+        height: 18px;
     }
 
     dl.dl-horizontal {
