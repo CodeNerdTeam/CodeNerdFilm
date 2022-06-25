@@ -159,6 +159,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CSS\style.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -254,7 +255,8 @@
     <Content Include="Views\Home\TLVienTuong.cshtml" />
     <Content Include="Views\NguoiDung\QGHanQuoc.cshtml" />
     <Content Include="Views\Home\QGHanQuoc.cshtml" />
-    <Content Include="Views\Email\SendMail1.cshtml" />
+    <Content Include="Views\Email\LienHe1.cshtml" />
+    <Content Include="Views\Email\LienHe2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

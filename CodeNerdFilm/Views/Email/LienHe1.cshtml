@@ -1,0 +1,96 @@
+﻿@model CodeNerdFilm.Models.Gmail
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/CSS/style.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("LienHe1", "Email", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="container mt-50">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mb-5 px-4">
+                    <div class="bg-grey-1 rounded shadow p-4">
+                        <h5 class="fs-24 c-pink">Code Nerd</h5>
+                        <div class="mb-3">
+                            <label class="form-label text-white fs-16 c-pink" style="font-weight: 500">Giới thiệu</label>
+                            <p class="text-white" style="margin: 0">
+                                Code Nerd là một website xem phim trực tuyến miễn phí với nhiều thể loại, từ các quốc gia trên thế giới,
+                                chất lượng hình ảnh HD, cập nhật phim mới sớm nhất, thân thiện với tất cả mọi người, an toàn cho người dùng.
+                            </p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white fs-16 c-pink" style="font-weight: 500">Ủng hộ</label>
+                            <p class="text-white" style="margin: 0">
+                                Hãy ủng hộ team Code Nerd để đội ngũ hoàn thiện website một cách tốt nhất đến cho mọi người.<br />
+                                Ủng hộ team bằng cách chuyển khoản qua Momo qua số điện thoại: <span style="font-weight: 300">038 3420 578</span>.<br />
+                                Hoặc quét mã QR phía bên dưới, team cảm ơn rất nhiều ❤️
+                            </p>
+                            <div class="mt-3">
+                                <img srcset="/Content/Images/qr-momo.jpg" width="100%" height="auto" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 col-md-6 mb-5 px-4">
+                    <div class="bg-grey-1 rounded shadow p-4">
+                        <h5 class="fs-24 c-pink">Liên hệ</h5>
+                        <div class="mb-3 info-container">
+                            <label class="form-label fs-16 c-pink" style="font-weight: 500">Email</label>
+                            <br />
+                            <a href="mailto: nhatnguyenktz119@gmail.com" class="text-decoration-none d-inline-block text-white info-item">
+                                <img srcset="/Content/Images/mail.png" class="me-2" />
+                                nhatnguyenktz119@gmail.com
+                            </a>
+                            <br />
+                            <a href="mailto: khangdev.it.2001@gmail.com" class="text-decoration-none d-inline-block text-white info-item">
+                                <img srcset="/Content/Images/mail.png" class="me-2" />
+                                khangdev.it.2001@gmail.com
+                            </a>
+                        </div>
+                        <div class="mb-3 info-container">
+                            <label class="form-label fs-16 c-pink" style="font-weight: 500">Điện thoại</label>
+                            <br />
+                            <a href="tel: +84383420578" class="text-decoration-none d-inline-block text-white info-item">
+                                <img srcset="/Content/Images/telephone-call.png" class="me-2 phone-call" />
+                                016 8342 0578
+                            </a>
+                        </div>
+                        <div class="mb-3 info-container">
+                            <label class="form-label fs-16 c-pink" style="font-weight: 500">Theo dõi</label>
+                            <br />
+                            <a href="https://www.facebook.com/khangdev20" class="d-inline-block fs-5 me-2 info-social">
+                                <img srcset="/Content/Images/facebook.png" />
+                            </a>
+                            <a href="https://www.instagram.com/r.11padbeieb.zxd_nn__/" class="d-inline-block fs-5 me-2 info-social">
+                                <img srcset="/Content/Images/instagram.png" />
+                            </a>
+                        </div>
+                        <div class="input-container">
+                            <label class="form-label fs-16 c-pink" style="font-weight: 500">Đăng ký nhận thông tin, phim mới từ Code Nerd </label>
+                            <br />
+                            @Html.TextBoxFor(model => model.Body, new { @class = "w-100 bg-grey-2 text-white form-input shadow-none input-item me-2", type = "email", placeholder = "Nhập email đăng ký", required = "required" })
+                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                        </div>
+                        <div style="margin-top: 8px">
+                            <span class="text-white">@ViewBag.Message</span>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>
+
+

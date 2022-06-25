@@ -21,7 +21,7 @@ namespace CodeNerd_Film.Controllers
             if (Session["Taikhoanadmin"] == null)
                 return RedirectToAction("Login", "Admin");
             else
-            {
+            {               
                 return View();
             }
         }
